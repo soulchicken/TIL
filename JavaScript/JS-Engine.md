@@ -3,6 +3,9 @@
 ## 목차
 
 - [함수와 함수호출](#함수와-함수호출)
+- [호출 스택](#호출-스택-call-stack)
+
+---
 
 ## 함수와 함수호출
 
@@ -79,4 +82,69 @@ document.querySelector("#header").addEventListener("click", onClick());
 document.querySelector("#header").addEventListener("click", () => {
   console.log("hi!");
 });
+```
+
+---
+
+## 호출 스택 (Call Stack)
+
+```jsx
+const x = "x";
+function h() {
+  const y = "y";
+  console.log("h");
+}
+
+function f() {
+  console.log("f");
+  function g() {
+    const z = "z";
+    console.log("g");
+    h();
+  }
+  g();
+}
+
+f(); // f, g, h 출력!
+h(); // h 출력!
+```
+
+막 엄청 꼬여있는 코드들을 보고 정확하게 어떻게 변수를 가져올 수 있는 지 확인할 수 있어야한다.
+
+→ 그치만 **자바스크립트 스펙 공식문서를 외우면 안된다.**
+
+- 코드는 위에서 아래로 읽힌다. (1차원적)
+  → 1차원적인 흐름을 벗어나야한다.
+- 위 함수를 호출스택으로 그려보기
+
+```jsx
+>> f()  f 실행
+>> f() console.log('f')  콘솔로그가 실행될 것임
+>> f()  콘솔 끝 사라짐
+>> f() g()   g 실행
+>> f() g() console.log('g')   콘솔로그 실행
+>> f() g() 콘솔 끝 사라짐
+>> f() g() h()   h 실행
+>> f() g() h() console.log('h')   콘솔로그 실행
+>> f() g() h()   콘솔 끝 사라짐
+>> f() g()   h 종료
+>> f()   g 종료
+>>    f 종료
+>> h()   h 실행
+>> h() console.log('h')   콘솔로그 실행
+>> h()   콘솔 끝 사라짐
+>>   h 종료
+```
+
+### debugger 사용
+
+위 상황을 확실히 보려면 `debugger`를 사용하면 된다.
+
+`h()`의 마지막에 `debugger`를 얹고 개발자도구에서 실행하면 Sources 창으로 옮겨가면서 호출 스택 (Call Stack)을 확인할 수 있다.
+
+![debugger](./JS-Engine/debugger.png)
+
+```jsx
+// 시점은?
+>> f() g() h()   콘솔 끝 사라짐
 ```
