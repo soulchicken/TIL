@@ -64,7 +64,6 @@ console.log(`Time Elapsed : ${(t2 - t1) / 1000} seconds`);
 >> Time Elapsed : 0.00009999999962747097 seconds
 ```
 
-<aside>
 💡 **The Problem with Time**
 
 - 기기마다 다른 방식으로 시간을 기록하고 사양에 따라 시간이 달라질 수 있다.
@@ -72,5 +71,3 @@ console.log(`Time Elapsed : ${(t2 - t1) / 1000} seconds`);
 - 빠른 알고리즘에는 너무 빠른 시간에 처리되다보니 시간을 기록하기 어렵다.
 
 **→ 시간을 직접 측정하면 정확도가 떨어진다**
-
-</aside>

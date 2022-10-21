@@ -1,3 +1,13 @@
+# CI/CD concept
+
+## 목차
+
+- [CI / CD concept](#cicd-concept)
+- [CI (Continuous Integration)](#ci-continuous-integration)
+- [CD (Continuous Deployment or Delivery)](#cd-continuous-deployment-or-delivery)
+
+---
+
 ## CI/CD concept
 
 - 고객의 니즈를 빠르게 해소하기 위해서 빠르게 배포하기 위해서, 시간을 단축시키는 전략
@@ -16,6 +26,8 @@
 - **CD** (지속적 전달 / 배포)
 
 → 이 과정을 통해 소프트웨어 배포 과정을 스피드업하게 해준다. 그리고 애자일 원칙에서 핵심적인 역할을 하게 된다.
+
+---
 
 ## CI (Continuous Integration)
 
@@ -37,6 +49,8 @@
 ![CI-flow.png](./CICD-concept/CI-flow.png)
 
 - CI server에서 컴파일, 테스팅, 정적 분석 등을 다 거친 이후에 배포가 된다.
+
+---
 
 ## CD (Continuous Deployment or Delivery)
 

@@ -142,7 +142,7 @@ h(); // h 출력!
 
 `h()`의 마지막에 `debugger`를 얹고 개발자도구에서 실행하면 Sources 창으로 옮겨가면서 호출 스택 (Call Stack)을 확인할 수 있다.
 
-![debugger](./JS-Engine/debugger.png)
+<img src="./JS-Engine/debugger.png" height="500px" title="debugger"/>
 
 ```jsx
 // 시점은?

@@ -11,4 +11,4 @@
 
 **CD/CD**
 
-- [CI / CD 개념 공부](./CICD/CICD-concept.md)
+- [CI / CD 개념](./CICD/CICD-concept.md)
