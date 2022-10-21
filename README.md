@@ -6,3 +6,9 @@
 
 - [인간 JS 엔진 되기](./JavaScript/JS-Engine.md)
 - [자료구조 & 알고리즘](./JavaScript/DataStructure.md)
+
+## DevOps
+
+**CD/CD**
+
+- [CI / CD 개념 공부](./CICD/CICD-concept.md)
