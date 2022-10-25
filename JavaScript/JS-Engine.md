@@ -4,7 +4,7 @@
 
 - [함수와 함수호출](#함수와-함수호출)
 - [호출 스택](#호출-스택-call-stack)
-
+- [스코프 체인](#스코프-체인)
 ---
 
 ## 함수와 함수호출
@@ -144,7 +144,125 @@ h(); // h 출력!
 
 <img src="./JS-Engine/debugger.png" height="500px" title="debugger"/>
 
+
 ```jsx
 // 시점은?
 >> f() g() h()   콘솔 끝 사라짐
+```
+
+--- 
+
+## 스코프 체인
+
+: 함수에서 어떤 값에 접근 가능하고 접근 불가능한가?
+
+- `function`, `if`, `while`같은 구문에 들어가는 `{  }` 블록이 기준이 된다.
+- 블록 내에 있어야 접근 가능하다. 호출스택은 호출에 관련됐다면 스코프체인은 선언과 관련돼있다.
+
+```jsx
+const x = 'x';
+function h() {
+	const y = 'y';
+	console.log('h');
+}
+
+function f(){
+	console.log('f');
+	function g() {
+		const z = 'z';
+		console.log('g');
+		h();
+	}
+	g();
+}
+
+f(); // f, g, h 출력!
+h(); // h 출력!
+```
+
+h ← anonymous(전체)
+
+f ← anonymous(전체)
+
+g ← f ← anonymous
+
+- f 함수에 y 변수를 사용할 수 없다.
+
+**사슬처럼 줄줄이 엮여있어서 스코프 체인이라고 한다.**
+
+체인을 트리로 보면 이렇다.
+
+```jsx
+anonymous
+├─ x
+│  
+├─ h
+│  └─ y
+│  
+└─ f
+   └─ g
+	    └─ z
+```
+
+### 똑같은 변수를 선언하기
+
+- x 변수를 같은 위계에 만들면 에러가 된다.
+
+```jsx
+const x = 'x';
+const x = 'y'; // 여기땜에 에러
+function h() {
+	const y = 'y';
+	console.log('h');
+}
+
+function f(){
+	console.log('f');
+	function g() {
+		const z = 'z';
+		console.log('g');
+		h();
+	}
+	g();
+}
+
+f(); // f, g, h 출력!
+h(); // h 출력!
+```
+
+- 다른 스코프에 있다면 선언이 가능하다. (y 변수 만들기)
+
+```jsx
+const x = 'x';
+
+function h() {
+	const y = 'y'; // y 하나!
+	console.log('h');
+}
+
+function f(){
+	const y = 'yy'; // y 하나 더!
+	console.log('f');
+	function g() {
+		const z = 'z';
+		console.log('g');
+		h();
+	}
+	g();
+}
+
+f(); // f, g, h 출력!
+h(); // h 출력!
+```
+
+- 만약 겹치는 변수가 있다면 어떤 변수를 사용하게 될까?
+
+```jsx
+const x = 'x';
+function f() {
+	// console.log(x); 오류가 나오는 부분!
+	const x = 'x2';
+	console.log(x)
+}
+f(); // x2 출력
 ```
