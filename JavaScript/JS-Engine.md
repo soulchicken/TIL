@@ -1,10 +1,12 @@
-# 인간 JS 엔진되기
+# JavaScript
 
 ## 목차
 
 - [함수와 함수호출](#함수와-함수호출)
 - [호출 스택](#호출-스택-call-stack)
 - [스코프 체인](#스코프-체인)
+- [호이스팅](#호이스팅)
+
 ---
 
 ## 함수와 함수호출
@@ -144,36 +146,35 @@ h(); // h 출력!
 
 <img src="./JS-Engine/debugger.png" height="500px" title="debugger"/>
 
-
 ```jsx
 // 시점은?
 >> f() g() h()   콘솔 끝 사라짐
 ```
 
---- 
+---
 
 ## 스코프 체인
 
 : 함수에서 어떤 값에 접근 가능하고 접근 불가능한가?
 
-- `function`, `if`, `while`같은 구문에 들어가는 `{  }` 블록이 기준이 된다.
+- `function`, `if`, `while`같은 구문에 들어가는 `{ }` 블록이 기준이 된다.
 - 블록 내에 있어야 접근 가능하다. 호출스택은 호출에 관련됐다면 스코프체인은 선언과 관련돼있다.
 
 ```jsx
-const x = 'x';
+const x = "x";
 function h() {
-	const y = 'y';
-	console.log('h');
+  const y = "y";
+  console.log("h");
 }
 
-function f(){
-	console.log('f');
-	function g() {
-		const z = 'z';
-		console.log('g');
-		h();
-	}
-	g();
+function f() {
+  console.log("f");
+  function g() {
+    const z = "z";
+    console.log("g");
+    h();
+  }
+  g();
 }
 
 f(); // f, g, h 출력!
@@ -195,10 +196,10 @@ g ← f ← anonymous
 ```jsx
 anonymous
 ├─ x
-│  
+│
 ├─ h
 │  └─ y
-│  
+│
 └─ f
    └─ g
 	    └─ z
@@ -209,21 +210,21 @@ anonymous
 - x 변수를 같은 위계에 만들면 에러가 된다.
 
 ```jsx
-const x = 'x';
-const x = 'y'; // 여기땜에 에러
+const x = "x";
+const x = "y"; // 여기땜에 에러
 function h() {
-	const y = 'y';
-	console.log('h');
+  const y = "y";
+  console.log("h");
 }
 
-function f(){
-	console.log('f');
-	function g() {
-		const z = 'z';
-		console.log('g');
-		h();
-	}
-	g();
+function f() {
+  console.log("f");
+  function g() {
+    const z = "z";
+    console.log("g");
+    h();
+  }
+  g();
 }
 
 f(); // f, g, h 출력!
@@ -233,22 +234,22 @@ h(); // h 출력!
 - 다른 스코프에 있다면 선언이 가능하다. (y 변수 만들기)
 
 ```jsx
-const x = 'x';
+const x = "x";
 
 function h() {
-	const y = 'y'; // y 하나!
-	console.log('h');
+  const y = "y"; // y 하나!
+  console.log("h");
 }
 
-function f(){
-	const y = 'yy'; // y 하나 더!
-	console.log('f');
-	function g() {
-		const z = 'z';
-		console.log('g');
-		h();
-	}
-	g();
+function f() {
+  const y = "yy"; // y 하나 더!
+  console.log("f");
+  function g() {
+    const z = "z";
+    console.log("g");
+    h();
+  }
+  g();
 }
 
 f(); // f, g, h 출력!
@@ -258,11 +259,59 @@ h(); // h 출력!
 - 만약 겹치는 변수가 있다면 어떤 변수를 사용하게 될까?
 
 ```jsx
-const x = 'x';
+const x = "x";
 function f() {
-	// console.log(x); 오류가 나오는 부분!
-	const x = 'x2';
-	console.log(x)
+  // console.log(x); 오류가 나오는 부분!
+  const x = "x2";
+  console.log(x);
 }
 f(); // x2 출력
 ```
+
+## 호이스팅
+
+- **선언 전에 호출**을 한다면?
+  → 이런 상황은 안만드는 것이 코드를 잘 짜는 것
+- 어쩌다보니 쓰여지는 경우
+  → `eslint`를 사용하기 (호이스팅 쓰지 않기 같은 룰을 적용해놓으면 코드검사에 뜬다)
+
+### TDZ (Temporal Dead Zone)
+
+- 이 상황은 피해줘야한다!
+
+```jsx
+const x = "x";
+function f() {
+  console.log(x);
+  const x = "x2";
+}
+f(); // TDZ 템퍼럴 데드존 코드
+```
+
+- `const`, `let` 변수선언보다 위에서 변수에 접근하면 ‘일시적인 사각지대’에 걸리게 된다.
+
+**호출과 선언은 상관 없음**
+
+```jsx
+function a() {
+  console.log(z);
+}
+// a(); 불가능!!!
+const z = "z1";
+a(); // z1 출력
+```
+
+- 선언은 TDZ가 적용되지만 내용물은 상관쓰지 않는다.
+
+### 남이 호이스팅을 만들어버린 경우
+
+- `var`로 변수선언을 사용한 경우
+
+```jsx
+var y;
+
+var y = "hi!"; // 여러번 선언 가능
+// window.y == 'hi!' 로 등록되버림
+```
+
+- const, let을 쓰는 이유 : var는 코드가 꼬였을 때 헷갈리게 만든다. 직관적이지 않은 부분이 존재한다.

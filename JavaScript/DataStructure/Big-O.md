@@ -5,6 +5,7 @@
 - [Big O의 필요성](#big-o의-필요성)
 - [코드의 시간 재기](#코드의-시간-재기)
 - [연산의 갯수 세기](#연산의-갯수-세기)
+- [빅오에 대한 공식 소개](#빅오에-대한-공식-소개)
 
 ## Big O의 필요성
 
@@ -92,5 +93,49 @@ function addUpTo(n) {
 }
 
 -> 연산  횟수 : 더하기+'=' 연산 n번 등등 = 5n + 2회
--> n의 값에 따라 비례하면서 증가 
+-> n의 값에 따라 비례하면서 증가
+```
+
+## 빅오에 대한 공식 소개
+
+- **Big-O Notation is a way to formalize fuzzy counting** : 대략적으로 숫자를 세는 것
+- **It allows us to talk formally about how the runtime of an algorithm grows as the inputs grow** : 정식으로 입력값이 늘어날수록 알고리즘의 실행시간이 어떻게 변하는 지 설명하는 공식
+- **We won’t care about the details, only the trends** : 전반적인 추세에만 주목
+
+### 빅오의 정의 (쉬운 버전)
+
+- f(n) could be linear (f(n) = n)
+- f(n) could be quadratic (f(n) = n\*\*2)
+- f(n) could be constant (f(n) = 1)
+- f(n) could be sometihing entirely different!
+
+```jsx
+function addUpTo(n) {
+ return n * (n + 1) / 2
+}
+
+-> Big-O : O(1)
+
+function addUpTo(n) {
+ let total = 0;
+ for (let i = 1; i <= n; i++){
+     total += i;
+ }
+ return total;
+}
+
+-> Big-O : O(n)
+
+function addUpTo(n) {
+ let total = 0;
+ for (let i = 1; i <= n; i++){
+	for (let j = 1; j <= i; j++){
+     total += 1;
+	}
+ }
+ return total;
+}
+
+-> Big-O : O(n**2)
+
 ```

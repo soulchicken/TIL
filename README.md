@@ -4,7 +4,7 @@
 
 ## JavaScript
 
-- [인간 JS 엔진 되기](./JavaScript/JS-Engine.md)
+- [JavaScript Digging](./JavaScript/JS-Engine.md)
 - [자료구조 & 알고리즘](./JavaScript/DataStructure/README.md)
 
 ## DevOps
