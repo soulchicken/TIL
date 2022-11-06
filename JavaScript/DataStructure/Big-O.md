@@ -6,6 +6,8 @@
 - [코드의 시간 재기](#코드의-시간-재기)
 - [연산의 갯수 세기](#연산의-갯수-세기)
 - [빅오에 대한 공식 소개](#빅오에-대한-공식-소개)
+- [빅오 표기법 단순화하기](#빅오-표기법-단순화하기)
+- [Big-O 시간 복잡도 퀴즈](#퀴즈-빅오-big-o-시간-복잡도-퀴즈)
 
 ## Big O의 필요성
 
@@ -139,3 +141,144 @@ function addUpTo(n) {
 -> Big-O : O(n**2)
 
 ```
+
+## 빅오 표기법 단순화하기
+
+### Constants Don’t Matter 상수는 중요하지 않다
+
+- O(2n) ⇒ O(n)
+- O(500) ⇒ O(1)
+- O(13n^2) ⇒ O(n^2)
+
+### Smaller Terms Don’t Matter 작은 연산은 중요하지 않다
+
+- O(n + 10) ⇒ O(n)
+- O(1000n + 50) ⇒ O(n)
+- O(n^2 + n + 8) ⇒ O(n^2)
+
+### Big O Shorthands
+
+1. **Arithmetic operations are constant**
+
+   산수는 상수다.
+
+2. **Variable assignment is constant**
+
+   변수 배정도 상수다.
+
+3. **Accessing elements in an array (by index) or object (by key) is constant**
+
+   배열에서 몇 번째 아이템, 인덱스를 찾든, 해시맵에서 키로 값을 찾든 똑같은 상수 시간이 걸린다.
+
+4. **In a loop, the complexity is the length of the loop times the complexity of whatever happens inside of the loop**
+
+   루프가 있다면 복잡도는 루프의 길이를 곱한다.
+
+## 퀴즈: 빅오 (BIG O) 시간 복잡도 퀴즈
+
+질문 1:다음 빅오 표현식을 간단히 해보세요 - `O(n + 10)` 
+**• `O(n)`** 
+• `O(n^2)` 
+• `O(n log n)`
+
+질문 2:다음 빅오 표현식을 간단히 해보세요 - `O(100 * n)` 
+• `O(2n)` 
+• `O(1)`
+**• `O(n)`**
+
+질문 3:다음 빅오 표현식을 간단히 해보세요 - `O(25)` 
+• `O(n)` 
+• `O(n!)` 
+**• `O(1)`**
+
+질문 4:다음 빅오 표현식을 간단히 해보세요 -  `O(n^2 + n^3)` 
+• `O(n^2)` 
+• `O(n)` 
+**• `O(n^3)`**
+
+질문 5:다음 빅오 표현식을 간단히 해보세요 - `O(n + n + n + n)` 
+• `O(4n)` 
+**• `O(n)`** 
+• `O(n^2)`
+
+질문 6:아래 함수에 대한 시간 복잡도를 구하세요.
+
+```jsx
+function logUpTo(n) {
+  for (var i = 1; i <= n; i++) {
+    console.log(i);
+  }
+}
+```
+
+**• `O(n)`** 
+• `O(n^2)` 
+• `O(n log n)`
+
+질문 7:아래 함수에 대한 시간 복잡도를 구하세요.
+
+```jsx
+function logAtMost10(n) {
+  for (var i = 1; i <= Math.min(n, 10); i++) {
+    console.log(i);
+  }
+}
+```
+
+**• `O(1)`** 
+• `O(n)` 
+• `O(n^2)`
+
+질문 8:아래 함수에 대한 시간 복잡도를 구하세요.
+
+```jsx
+function logAtLeast10(n) {
+  for (var i = 1; i <= Math.max(n, 10); i++) {
+    console.log(i);
+  }
+}
+```
+
+**• `O(n)`** 
+• `O(1)` 
+• `O(n log n)`
+
+질문 9:아래 함수에 대한 시간 복잡도를 구하세요.
+
+---
+
+```jsx
+1. function onlyElementsAtEvenIndex(array) {
+2.     var newArray = Array(Math.ceil(array.length / 2));
+3.     for (var i = 0; i < array.length; i++) {
+4.         if (i % 2 === 0) {
+5.             newArray[i / 2] = array[i];
+6.         }
+7.     }
+8.     return newArray;
+9. }
+```
+
+**• `O(n)`**
+• `O(1)`
+• `O(n^2)`
+
+질문 10:아래 함수에 대한 시간 복잡도를 구하세요.
+
+```jsx
+1. function subtotals(array) {
+2.     var subtotalArray = Array(array.length);
+3.     for (var i = 0; i < array.length; i++) {
+4.         var subtotal = 0;
+5.         for (var j = 0; j <= i; j++) {
+6.             subtotal += array[j];
+7.         }
+8.         subtotalArray[i] = subtotal;
+9.     }
+10.     return subtotalArray;
+11. }
+```
+
+• `O(1)` 
+• `O(n)` 
+**• `O(n^2)`**

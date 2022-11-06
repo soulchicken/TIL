@@ -6,6 +6,7 @@
 - [호출 스택](#호출-스택-call-stack)
 - [스코프 체인](#스코프-체인)
 - [호이스팅](#호이스팅)
+- [this는 호출될 때 결정된다](#this는-호출-때-결정된다)
 
 ---
 
@@ -268,6 +269,8 @@ function f() {
 f(); // x2 출력
 ```
 
+---
+
 ## 호이스팅
 
 - **선언 전에 호출**을 한다면?
@@ -315,3 +318,113 @@ var y = "hi!"; // 여러번 선언 가능
 ```
 
 - const, let을 쓰는 이유 : var는 코드가 꼬였을 때 헷갈리게 만든다. 직관적이지 않은 부분이 존재한다.
+
+---
+
+## this는 호출 때 결정된다
+
+→ 호출스택을 그릴 때 this값을 같이 그리면 된다.
+
+- 콘솔에 `console.log(this)`를 입력하면 window 객체가 나온다.
+  this는 기본적으로 window다. 노드에서는 global이라는 객체가 나온다. - 최근의 스택에서는 globalThis로 합쳐졌다.
+- `‘use strict’` 로 strict 모드가 되면 this는 window가 아니라 undefined가 된다.
+
+### this가 바뀌는 시점
+
+```jsx
+const obj = {
+  name: "soul",
+  sayName() {
+    console.log(this.name);
+  },
+};
+
+obj.sayName(); // soul 출력!
+// window.name이 아닌 상황
+
+const sayN = obj.sayName;
+sayN(); // 아무것도 없는 것이 출력됨
+```
+
+- this는 함수가 호출될 때 정해진다.
+- 호출할 때 함수 앞에 객체가 있다면 this가 해당 객체가 된다. : `obj.sayName()`
+- 호출할 때 함수 앞에 객체가 없다면 this는 window : `sayN()`
+
+### 화살표 함수를 쓰면 또 상황이 바뀜
+
+- 화살표는 부모의 this
+
+```jsx
+const obj = {
+  name: "soul",
+  sayName: () => {
+    console.log(this.name);
+  },
+};
+obj.sayName(); // window.name 출력 (없음)
+```
+
+### 객체 생성 (new)
+
+```jsx
+function Human(name) {
+	this.name = name;
+}
+
+new Human('soul');
+>> Human {name: 'soul'}
+// this는 이 타이밍에 객체 자신이 됨
+```
+
+### bind, call, apply
+
+```jsx
+function sayName() {
+  console.log(this.name);
+}
+
+// 새로운 함수를 만들기
+sayName.bind({ name: "soul" });
+
+// 새로운 함수를 호출
+sayName.call({ name: "soul" });
+
+// 새로운 함수로 만들어서 호출
+sayName.apply({ name: "soul" });
+```
+
+### 화살표 함수
+
+- 화살표함수 안의 this는 부모함수의 this를 가져온다.
+
+```jsx
+const obj = {
+  name: "soul",
+  sayName: () => {
+    console.log(this.name);
+    function inner() {
+      console.log(this.name);
+    }
+    inner();
+  },
+};
+
+obj.sayName(); // window.name
+// inner : window.name이 호출됨
+```
+
+```jsx
+const obj = {
+	name : 'soul',
+	sayName() {
+		console.log(this.name);
+		function inner = () => {
+			console.log(this.name);
+		}
+		inner();
+	}
+}
+
+obj.sayName();
+// soul 이 2번 출력
+```
