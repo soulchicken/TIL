@@ -9,6 +9,11 @@
 
 ## DevOps
 
+**AWS**
+
+- [SSH key 등록 & EC2 시작하기](./AWS/EC2-start.md)
+- [AWS 기초 & VPC](./AWS/AWS-and-VPC.md)
+
 **CD/CD**
 
 - [CI / CD 개념](./CICD/CICD-concept.md)
