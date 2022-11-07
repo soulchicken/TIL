@@ -7,6 +7,7 @@
 - [스코프 체인](#스코프-체인)
 - [호이스팅](#호이스팅)
 - [this는 호출될 때 결정된다](#this는-호출-때-결정된다)
+- [this를 분석할 수 없는 케이스](#this를-분석할-수-없는-케이스)
 
 ---
 
@@ -427,4 +428,53 @@ const obj = {
 
 obj.sayName();
 // soul 이 2번 출력
+```
+
+---
+
+## this를 분석할 수 없는 케이스
+
+```jsx
+const header = document.querySelector ...
+header.addEventListener('click', function() {
+	console.log(this);
+});
+// header를 클릭하면 this는 해당 태그로 출력된다.
+```
+
+- 결론적으로 이런 경우의 this는 호출한 부분이 안보여서 외워야만 한다.
+- 경험적으로 addEventListener는 this가 해당 태그가 나오는데 이런 형태의 함수들이 모두 이처럼 this가 나오진 않는다.
+
+### 위 코드를 화살표함수로 쓰면?
+
+```jsx
+const header = document.querySelector ...
+header.addEventListener('click', () => {
+	console.log(this);
+});
+// header를 클릭하면 this는 해당 window로 출력된다.
+```
+
+- 화살표 함수는 call, bind같은 것을 붙일 수 없고 그냥 실행된다. 그리고 화살표 함수는 부모의 this를 따라간다.
+
+### 만약 우리가 addEventListener같은 함수를 만들어야 한다면?
+
+```jsx
+const header = {
+  addEventListener(eventName, callback) {
+    callback.call(header);
+  },
+};
+```
+
+### apply vs bind vs call
+
+- 결론 : a.apply(window) === a.bind(window)() === a.call(window)
+
+```jsx
+function add(a, b) {
+  return a + b;
+}
+add.apply(null, [3, 5]); // 8
+add.call(null, 3, 5); // 8
 ```

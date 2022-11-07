@@ -8,6 +8,9 @@
 - [빅오에 대한 공식 소개](#빅오에-대한-공식-소개)
 - [빅오 표기법 단순화하기](#빅오-표기법-단순화하기)
 - [Big-O 시간 복잡도 퀴즈](#퀴즈-빅오-big-o-시간-복잡도-퀴즈)
+- [공간 복잡도](#공간-복잡도)
+- [Big-O 공간 복잡도 퀴즈](#퀴즈-2--빅오-공간-복잡도-퀴즈)
+- [log 로그](#logarithms-로그)
 
 ## Big O의 필요성
 
@@ -282,3 +285,124 @@ function logAtLeast10(n) {
 • `O(1)` 
 • `O(n)` 
 **• `O(n^2)`**
+
+## 공간 복잡도
+
+- 알고리즘 자체가 필요로 하는 공간
+- 입력이 커질수록 차지하는 공간(메모리)에 주목하는 방식
+
+### 공간 복잡도 Rules in JS
+
+- **Most primitives (booleans, numbers, undefined, null) are constant space**
+  부울, 숫자, undefined, null은 자바스크립트에서는 모두 상수 공간
+- **Strings require O(n) space (where n is the string length)**
+  문자열은 문자열의 길이(n)만큼의 공간 O(n)이 필요하다.
+- Reference types are generally O(n), where n is the length (for arrays) or the number of keys (for objects)
+  참조타입도 주로 O(n). 객체의 키 갯수나 배열의 길이 n을 의미하게 된다.
+
+### 공간 복잡도 예시
+
+```jsx
+function sum(arr) {
+	let total = 0;
+	for (let i = 0; i < arr.length; i++) {
+		total += arr[i];
+	}
+}
+
+-> O(n) : 배열의 길이만큼의 공간 복잡도를 갖는다.
+				(나머지는 상수라서 취급하지 않는다.)
+```
+
+## 퀴즈 2 : 빅오 공간 복잡도 퀴즈
+
+질문 1:아래 함수에 대한 공간 복잡도를 구하세요.
+
+```jsx
+1. function logUpTo(n) {
+2.     for (var i = 1; i <= n; i++) {
+3.         console.log(i);
+4.     }
+5. }
+```
+
+**• `O(1)`**
+• `O(n)`
+• `O(n log n)`
+
+질문 2:아래 함수에 대한 공간 복잡도를 구하세요.
+
+```jsx
+1. function logAtMost10(n) {
+2.     for (var i = 1; i <= Math.min(n, 10); i++) {
+3.         console.log(i);
+4.     }
+5. }
+```
+
+**• `O(1)`** 
+• `O(n)` 
+• `O(n log n)`
+
+질문 3:아래 함수에 대한 공간 복잡도를 구하세요.
+
+```jsx
+1. function onlyElementsAtEvenIndex(array) {
+2.     var newArray = Array(Math.ceil(array.length / 2));
+3.     for (var i = 0; i < array.length; i++) {
+4.         if (i % 2 === 0) {
+5.             newArray[i / 2] = array[i];
+6.         }
+7.     }
+8.     return newArray;
+9. }
+```
+
+**• `O(n)`**
+• `O(n log n)`
+• `O(n^2)`
+
+질문 4:아래 함수에 대한 공간 복잡도를 구하세요.
+
+```jsx
+1. function subtotals(array) {
+2.     var subtotalArray = Array(array.length);
+3.     for (var i = 0; i < array.length; i++) {
+4.         var subtotal = 0;
+5.         for (var j = 0; j <= i; j++) {
+6.             subtotal += array[j];
+7.         }
+8.         subtotalArray[i] = subtotal;
+9.     }
+10.     return subtotalArray;
+11. }
+```
+
+• `O(1)`
+**• `O(n)`**
+• `O(n^2)`
+
+---
+
+## Logarithms (로그)
+
+- O(1), O(n), O(n^2)처럼 빅오가 간단하지 않은 경우가 존재한다.
+  따라서 빅오 표기에는 좀 더 어렵고나 덜 흔한 수학 개념들이 포함되어 있을 수 있다.
+  그 중 자주 나오는 개념이 **로그**다.
+- 그렇지만 밑이 2인지 e인지 등은 중요하지 않다. **‘추세’**만 본다. 그래도 보통 밑은 **2**로 고려한다.
+
+![Log그래프](./Big-O/1.png)
+
+- 시간 복잡도에 굉장히 좋다. 사실상 상수 복잡도와 비슷한 수준
+
+### What’s a log again?
+
+- 로그 함수? : 지수 함수의 역함수.
+- 그럼 지수 함수는? : 로그 함수의 역함수.
+
+### Example
+
+- 8 → 4 → 2 → 1 == 25
+  - log8 = 3
+- 25 → 12.5 → 6.25 → 3.125 → …
+  - 4 < log25 < 5
