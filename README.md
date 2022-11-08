@@ -4,7 +4,7 @@
 
 ## JavaScript
 
-- [JavaScript Digging](./JavaScript/JS-Engine.md)
+- [JavaScript Digging](./JavaScript/JS-Engine/JS-Engine.md)
 
 **Node JS**
 
@@ -15,6 +15,7 @@
 
 - [JavaScript 자료구조 & 알고리즘](./JavaScript/DataStructure/README.md)
   - [Big-O 표기법](./JavaScript/DataStructure/Big-O.md)
+  - [Data Structures INTRO](./JavaScript/DataStructure/DataStructure-intro.md)
 
 ## DevOps
 

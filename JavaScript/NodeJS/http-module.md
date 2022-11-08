@@ -1,4 +1,6 @@
-## 노드로 http 서버 만들기
+# http 모듈로 서버 만들기
+
+## http 서버 만들기
 
 ### http 요청에 응답하는 노드 서버
 
@@ -40,4 +42,43 @@ server.on("listening", () => {
 server.on("error", (error) => {
   console.error(error);
 });
+```
+
+- 브라우저로 데이터를 보내줄 때 정확히 **html**인지 **문자열**인지 알려줘야한다.
+
+```jsx
+const server = http
+  .createServer((req, res) => {
+    **res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });**
+    res.write("<h1>Hello Node!</h1>");
+    res.write("<p>Hello server</p>");
+    res.end("<h1>Hello Soul</h1>");
+  })
+  .listen(8080);
+```
+
+- `writeHead`로 **Content-Type**을 정의해주고, 한글이 안먹힐 수 있으니 **utf-8**까지 낭낭하게 사용한다.
+  - html은 `text/html`, 일반 문자열은 `text/plain`
+
+## fs로 HTML을 읽어 제공하기
+
+- `res.write`로 하면 불편하니 `html` 파일을 직접 보내기
+
+```jsx
+const http = require("http");
+**const fs = require("fs").promises;**
+
+const server = http
+  .createServer(async (req, res) => {
+    try {
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      **const data = await fs.readFile("./httpServer.html");**
+      res.end(data);
+    } catch (error) {
+      console.error(error);
+      res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+      res.end(error.massage);
+    }
+  })
+  .listen(8080);
 ```
