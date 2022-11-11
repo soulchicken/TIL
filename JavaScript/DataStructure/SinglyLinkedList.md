@@ -165,3 +165,81 @@ pop() {
     return current;
   }
 ```
+
+### Shift 메소드 구현
+
+- Removing a new **node** from the beginning of the Linked List!
+  ⇒ 헤드를 제거하고 헤드를 두 번째 노드로 옮긴다.
+
+**Psuedocode**
+
+- **If there are no nodes, return undefined**
+  ⇒ 노드가 없다면 undefined 반환
+- **Store the current head property in a variable**
+  ⇒ 노드가 있다면 현재의 헤드 속성을 변수에 저장
+- **Set the head property to be the current head’s next property**
+  ⇒ 변수의 next 값을 헤드로 지정
+- **Decrement the length by 1**
+- **Return the value of the node removed**
+
+```jsx
+shift() {
+    // 헤드가 없다면 undefined 반환
+    if (!this.head) return undefined;
+
+    // current head
+    const currentHead = this.head;
+
+    // new head
+    this.head = currentHead.next;
+
+    this.length--;
+
+		// 만약 더 이상 노드가 없다면 테일 초기화
+    if (!this.length) {
+      this.tail = null;
+    }
+    return currentHead;
+  }
+```
+
+### Unshift 메소드 구현
+
+- Adding a new **node** to the beginning of the Linked List!
+  ⇒ 헤드쪽에 새로운 노드를 추가하기
+
+**Psuedocode**
+
+- **This function should accept a value**
+  ⇒ value를 인자로 받는 함수여야 한다.
+- **Create a new node using the value passed to the function**
+  ⇒ push 메소드처럼 새로운 노드를 생성해야한다.
+- **If there is no head property on the list, set the head and tail to be the newly created node**
+  ⇒ 헤드가 없는 경우 헤드와 테일 모두 새로운 노드를 가리키도록 한다.
+- **Otherwise set the newly created node’s next property to be the current head property on the list**
+  ⇒ 노드가 이미 있는 경우, 새롭게 생성된 노드의 next에 현재 헤드 값을 설정한다.
+- **Set the head property on the list to be that newly created node**
+  ⇒ 헤드는 새로운 노드를 가리키도록 한다.
+- **Increment the length of the list by 1**
+- **Return the linked list**
+
+```jsx
+unshift(val) {
+    // val값으로 새로운 노드 생성
+    const newNode = new Node(val);
+
+    // 만약 노드가 없다면
+    if (!this.length) {
+      // 테일에 새로운 노드가 들어간다.
+      this.tail = newNode;
+    } else {
+      // 노드가 있다면 지금의 헤드는 새로운 노드의 next
+      newNode.next = this.head;
+    }
+    // 새로운 노드가 이제부터 헤드
+    this.head = newNode;
+
+    this.length++;
+    return this;
+  }
+```

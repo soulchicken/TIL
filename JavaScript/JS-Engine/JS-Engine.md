@@ -8,6 +8,7 @@
 - [호이스팅](#호이스팅)
 - [this는 호출될 때 결정된다](#this는-호출-때-결정된다)
 - [this를 분석할 수 없는 케이스](#this를-분석할-수-없는-케이스)
+- [프로미스의 최고 장점](#프로미스의-최고-장점)
 
 ---
 
@@ -478,3 +479,71 @@ function add(a, b) {
 add.apply(null, [3, 5]); // 8
 add.call(null, 3, 5); // 8
 ```
+
+---
+
+## 프로미스의 최고 장점
+
+### Promise
+
+- 실행은 됐는데, 결과값을 **나중에** 쓸 수 있는 것
+
+```jsx
+const promise = new Promise((resolve, reject) => {
+  // 내용
+});
+
+const a = promise.then(() => {
+  // 결괏값 사용하기!
+});
+
+promise.catch((에러) => {});
+```
+
+⇒ `setTimeout`은 콜백이 강하게 얽혀있어서 강제가 되는데, `promise`는 실행결과를 담아뒀다가 사용하고 싶을 때(`then`) 결괏값을 사용한다.
+
+- `promise`에 바로 then, catch를 이어서 써버릇하다보니 callback, setTimeout의 진화버전이라 생각 할 수 있지만 아니다.
+- `then`, `catch`는 따로 쓸 수 있다.
+- `async`, `await`을 쓴다고 `then`, `catch`, `finally`를 안쓰지 않는다!
+
+### promise 예시
+
+```jsx
+// 먼저 axios로 모든 데이터들을 쫙 가져온다.
+const p1 = axios.get('서버주소1')
+const p2 = axios.get('서버주소2')
+const p3 = axios.get('서버주소3')
+const p4 = axios.get('서버주소4')
+const p5 = axios.get('서버주소5')
+
+// 딴 짓 하 기
+
+// p2가 필요한 시점
+p.then((data) => {화면그리기(data)});
+
+// 한방에 받아보기
+Promise
+	.all([p1, p2, p3, p4, p5])
+	.then((results)
+					=> {사용하기(result)});
+```
+
+### Promise.all, allSettled
+
+- `all`은 단점 하나라도 에러뜨면 catch로 가버린다.
+  - `catch`는 `all`의 범위 뿐만 아니라 `then`의 에러까지의 범위를 커버한다.
+
+```jsx
+Promise
+	.all([p1, p2, p3, p4, p5])
+	.then((results)
+					=> {사용하기(result)})
+	.catch((error)=>{ ㅜㅜ });
+
+Promise
+	.allSettled([p1, p2, p3, p4, p5])
+	.then((results)
+					=> {사용하기(result)});
+```
+
+- `allSettled`의 경우 일부만 성공한 경우 알 수 있다. `result`에 성공, 실패 여부가 들어가게 된다!
