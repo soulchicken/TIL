@@ -20,6 +20,13 @@
   - [Data Structures INTRO](./JavaScript/DataStructure/DataStructure-intro.md)
   - [단일 연결 리스트 (Singly Linked List)](./JavaScript/DataStructure/SinglyLinkedList.md)
 
+## C / C++
+
+**따라하며 배우는 C 언어**
+
+- [컴퓨터의 작동 원리](./C-and-CPP/컴퓨터의-자동원리.md)
+- [C언어 INTRO](./C-and-CPP/C-intro.md)
+
 ## DevOps
 
 **AWS**
