@@ -4,7 +4,8 @@
 
 ## JavaScript
 
-- [JavaScript Digging](./JavaScript/JS-Engine/JS-Engine.md)
+- [호출스택, 스코프체인, this](./JavaScript/JS-Engine/JS-Engine.md)
+- [비동기](./JavaScript/JS-Engine/비동기.md)
 
 **Node JS**
 
@@ -15,9 +16,9 @@
 
 - [JavaScript 자료구조 & 알고리즘](./JavaScript/DataStructure/README.md)
   - [Big-O 표기법](./JavaScript/DataStructure/Big-O.md)
-  - [Big-O of Arrays and Objects (배열과 오브젝트의 성능 평가)](./JavaScript/Big-O-of-Arrays-and-Objects.md)
+  - [Big-O of Arrays and Objects (배열과 오브젝트의 성능 평가)](./JavaScript/DataStructure/Big-O-of-Arrays-and-Objects.md)
   - [Data Structures INTRO](./JavaScript/DataStructure/DataStructure-intro.md)
-  - [단일 연결 리스트 (Singly Linked List)](./JavaScript/SinglyLinkedList.md)
+  - [단일 연결 리스트 (Singly Linked List)](./JavaScript/DataStructure/SinglyLinkedList.md)
 
 ## DevOps
 
