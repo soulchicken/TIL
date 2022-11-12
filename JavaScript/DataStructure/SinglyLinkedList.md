@@ -243,3 +243,62 @@ unshift(val) {
     return this;
   }
 ```
+
+### Get 메소드 구현
+
+- Retrieving a **node** by it’s position in the Linked List!
+  - 주어진 위치의 값을 반환하는 메소드
+
+**Psuedocode**
+
+- **This function should accept an index**
+  - 인덱스를 인자로 받는 함수
+- **If the index is less than zero or greater than or equal to the length of the list, return null**
+  - 인덱스 번호가 링크드 리스트를 넘어서면 null 반환
+- **Loop through the list until you reach the index and return the node at thatspecific index**
+  - 루프를 돌면서 인덱스가 지정한 위치에 이를 떄까지 노드를 옮겨간다.
+
+```jsx
+get(index) {
+	// 예외처리
+  if (!this.length || this.length <= index) return null;
+
+  let current = this.head;
+  let counter = 0;
+
+  while (index != counter) {
+    current = current.next;
+    counter++;
+  }
+  return current;
+}
+```
+
+### Set 메소드 구현
+
+- Changing the **value** of a ode based on it’s position in the Linked List
+  - 해당 인덱스에 위치한 노드의 값을 업데이트한다.
+
+**Psuedocode**
+
+- **This function should accept a value and an index**
+  - 업데이트할 노드의 인덱스 번호와 값을 인자로 받아야한다.
+- **Use your get() function to find the spectific node.**
+  - 기존에 작성한 get() 함수를 활용한다.
+- **If the node is not found, return false**
+  - 해당 노드가 없다면 false 반환
+- **If the node is found, set the value of that node to be the value passed to the function and return true**
+  - 해당 노드가 있다면 값을 바꿔주고 true 반환
+
+```jsx
+set(index, val) {
+	// get 함수로 찾기
+  const foundNode = this.get(index);
+	// 해당 노드가 존재하지 않는다면 false
+  if (foundNode) return false;
+
+	// 해당노드가 있다면 값을 바꿔주고 true
+  foundNode.value = val;
+  return true;
+}
+```
