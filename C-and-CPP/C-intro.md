@@ -1,64 +1,13 @@
 # C언어 INTRO
 
-## BEFORE INTRO
-
-### C언어의 탄생
-
-- **Dennis Ritchie**, **Ken Thompson**이 **C언어(1972)**를 만들었다.
-  사실 다른 사람들과 **UNIX 운영체제**를 **어셈블리어**로 만들고 있었다.
-  - 어셈블리어로 다 만들기 힘들 것 같아서 운영체제 하에서 추가적으로 사용할 응용프로그램을 만들기 위해서 C언어를 만들었다. (나중엔 UNIX에서 어셈블리 떼고 C로 다 갈아치움)
-
-### C언어의 특징
-
-**장점**
-
-- 프로그램의 효율성을 높일 수 있다.
-- 강력하면서도 유연하다.
-- 프로그래머 중심이다.
-- 다른 시스템으로 이식하기 좋다.
-
-**C언어가 쓰이는 곳**
-
-- Unix 운영 체제
-- 컴퓨터 게임
-- 루카스 필름 (스타워즈 VFX)
-- 임베디드 시스템
-- 자동화 공장
-
-**C언어는 어디로 가는가?**
-
-- 언어 랭킹이 매년 바뀌는데, C/C++는 랭킹에서 사라지지 않는다. (1등을 할 일은 없다.)
-- 주력으로 쓰는 것은 아닐 가능성이 높지만 C/C++는 공부하는데에 많이 도움이 된다.
-
-## C 언어의 표준
-
-- **K&R C (Classic C)**
-  : 유닉스와 함께 제공된 라이브러리가 사실상의 표준
-- **C89 ANSI, C90 ISO**
-  - The Spirit of C
-- **C99 - ANSI/ISO C9X Committee**
-  - 국제적인 문자 집합 추가
-  - 64비트 프로세서 대응
-  - 과학 공학 수치 계산 적합도 개선 (FORTRAN 대체)
-  - 언어를 단순하게 유지
-- **The C11 Standard**
-  - C99의 일부를 선택적인 기능으로 변경
-  - 멀티 프로세서 대응 concurrent programming
-- **The C18 Standard**
-  - 새로운 기능 추가 없이 C11의 결함 수정
-
----
-
-## C 언어 INTRO
-
-### **C의 해부학**
+## **C의 해부학**
 
 - 메모리(주기억장치)로부터 데이터를 입력받고 그 데이터를 활용해서 기능을 수행하고 그 결과 데이터를 메모리에게 돌려준다.
 - C언어를 이루는 기본적인 구성요소는 **함수**이다.
   : **입력(Input) → 함수(Function) → 출력(Output)**
 - 복잡해보이는 프로그램도 결국 여러 함수들이 모여서 생긴 큰 함수를 통해 입력을 출력으로 만드는 것 뿐이다.
 
-### **C 프로그램 훑어보기**
+## **C 프로그램 훑어보기**
 
 **예시 코드**
 
@@ -134,7 +83,7 @@ int main() // main(void)도 된다.
     int y;
     int z;
 
-		x = 1; // 할당한다. assignment
+    x = 1; // 할당한다. assignment
     y = 2;
     z = x + y;
     return 0;
@@ -168,3 +117,189 @@ int cracker;
 // int hot-tube; 변수명에 '-' 를 넣을 수 없다. (다른 특수기호들도 사용할 수 없다.)
 // int int; 변수명에 예약어를 사용할 수 없다.
 ```
+
+## printf() 함수의 기본적인 사용법
+
+- **입력** → **printf( …입력… )** → **출력**
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    printf("나는 사실 아이언맨임 ㄷㄷ")
+    // 이 대사는 중간에 대사를 멈칫하면서 해야 멋있다. 줄바꿈을 해보자.
+    printf("The truth is ...\n\n\n\nI am Ironman.");
+    return 0;
+}
+```
+
+- **escape sequence** : `\n` 줄바꿈같은 문자열
+  - `\`가 나오면 문자열을 읽다가 멈추고 그것에 맞는 ‘무언가 행위’를 한다.
+  - `printf(’\a’)`를 하면 알림음이 나온다.
+
+### 따옴표 출력하기
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    printf("The truth is ... I am \"Ironman\".");
+    return 0;
+}
+```
+
+- **escape sequence**로 `\”` 을 사용하면 따옴표를 문자열에 넣을 수 있다.
+
+### printf는 끝나도 줄바꿈을 하지 않는다
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    printf("The truth is ...")
+		pritf("I am \"Ironman\".");
+    return 0;
+}
+```
+
+- 우리는 2줄로 출력을 원하지만 위 코드를 실행하면 한 줄로 실행된다. 줄바꿈을 안했기 때문이다.
+
+### print ‘f’ 인 이유
+
+- print format의 줄임말
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    int x = 1;
+    int y = 2;
+    int z = x + y;
+    printf("%i + %i = %i\n", x, y, z);
+    printf("The answer is %d", z);
+    return 0;
+}
+// 1 + 2 = 3
+// The answer is 3
+// 위 2줄이 출력된다.
+```
+
+- 숫자를 넣고 싶은 부분에 %를 사용해서 포맷팅을 한다.
+- `%d` : 10진수
+- `%i` : integer
+  - d, i의 차이는 `scanf`에서만 조금 차이가 난다.
+
+## 주석 (comment)
+
+- 블럭 주석과 한 줄 주석
+
+```
+/*
+여러 줄 주석 1
+여러 줄 주석 2
+여러 줄 주석 3
+*/
+
+// 한 줄 주석
+```
+
+- 주석은 달아야 할 곳에 꼭 달고, 필요하지 않다면 굳이 달지 않는다.
+
+### 단축키
+
+- 한 줄 : Ctrl + /
+- 블럭 : Alt + Shift + A
+
+## 키워드와 예약어
+
+- C keyowds : [https://en.cppreference.com/w/c/keyword](https://en.cppreference.com/w/c/keyword)
+- 키워드는 변수명, 함수명으로 사용하지 않는다!
+- `printf`는 `stdio.h`를 `include`하지 않으면 사용할 수 있다. 그러나 이러느니 변수명으로 안쓰는게 낫다.
+
+```c
+// #include <stdio.h>
+
+int main(void)
+{
+    int printf = 1;
+    return 0;
+}
+```
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    int printf = 1;
+    printf("hi!"); // 여기에서 에러 발생
+    return 0;
+}
+```
+
+## 함수 만들기
+
+- `main`, `printf`말고 우리가 함수를 만들어보기
+
+```c
+#include <stdio.h>
+
+void say_hello(void) // 리턴할 값 : 보이드, 입력값 : 보이드
+{
+    printf("Hello!\n");
+    return;
+}
+
+int main(void)
+{
+    say_hello();
+    return 0;
+}
+```
+
+- 함수는 변수처럼 미리 선언이 되어있지 않으면 사용할 수 없다.
+  - 만약 `main` 함수가 `say_hello`보다 먼저 있다면 에러가 나온다.
+- 무조건 위에 나와야하니 불편하다. 그래서 미리 **‘선언’**만 하는 것이 가능하다.
+
+```c
+#include <stdio.h>
+
+void say_hello(void); // 미리 프로토타입으로 선언
+// prototyping, function declaration
+
+int main(void)
+{
+    say_hello();
+    return 0;
+}
+
+void say_hello(void) // function definition
+{
+    printf("Hello!\n");
+    return;
+}
+```
+
+## 디버거 사용법
+
+- 프로그래머는 코드 작성보다 오류를 잡는 디버깅을 더 많이 하게 된다…
+
+1. **브레이크 포인트를 찍어준다.**
+
+   ![브레이크포인트](./debugger/1.png)
+
+2. **디버깅을 누르면 브레이크포인트에서 멈춘다.**
+
+   순차적으로 변수의 값이 바뀌는 것을 확인할 수 있다
+
+   ![브레이크포인트](./debugger/2.png)
+
+   ![브레이크포인트](./debugger/3.png)
+
+   ![브레이크포인트](./debugger/4.png)
+
+   ![브레이크포인트](./debugger/5.png)

@@ -24,7 +24,8 @@
 
 **따라하며 배우는 C 언어**
 
-- [컴퓨터의 작동 원리](./C-and-CPP/컴퓨터의-자동원리.md)
+- [컴퓨터의 작동 원리](./C-and-CPP/what-is-computer.md)
+- [C언어 BEFORE INTRO](./C-and-CPP/C-before-intro.md)
 - [C언어 INTRO](./C-and-CPP/C-intro.md)
 
 ## DevOps
