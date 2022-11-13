@@ -1,5 +1,19 @@
 # 단일 연결 리스트 (Singly Linked List)
 
+목차
+
+- [What is a Linked List](#what-is-a-linked-list)
+- [Node Class 구현](#node-class-구현하기)
+- [Singly Linked List 구현](#singlylinkedlist-class-구현)
+  - [Push 메소드 구현](#push-메소드-구현)
+  - [Pop 메소드 구현](#pop-메소드-구현)
+  - [Shift 메소드 구현](#shift-메소드-구현)
+  - [Unshift 메소드 구현](#unshift-메소드-구현)
+  - [Get 메소드 구현](#get-메소드-구현)
+  - [Set 메소드 구현](#set-메소드-구현)
+  - [Insert 메소드 구현](#insert-메소드-구현)
+  - [Remove 메소드 구현](#remove-메소드-구현)
+
 ## What is a linked list?
 
 **단지 연결된 노드들의 집합**
@@ -300,5 +314,100 @@ set(index, val) {
 	// 해당노드가 있다면 값을 바꿔주고 true
   foundNode.value = val;
   return true;
+}
+```
+
+### Insert 메소드 구현
+
+- Adding a node to the Linked List at a **specific** position
+  ⇒ 주어진 위치에 노드를 **추가**하는 메소드
+
+**Insert pseudocode**
+
+- **If the index is less than zero or greater than the length, return false**
+  ⇒ 범위를 벗어날 경우 삽입하지 않고 false 반환
+- **If the index is the same as the length, push a new node to the end of the list**
+  ⇒ 인덱스와 길이가 같을 경우 리스트의 맨 마지막에 삽입하는 push 매소드 사용
+- **If the index is 0, unshift a new node to the start of the list**
+  ⇒ 0번 인덱스에 추가하는 경우 unshift 매소드 사용
+- **Otherwise, using the get method, access the node at the index -1**
+  ⇒ get 메소드를 사용해 해당 위치 쪽에 있는 노드를 일단 가져온다. (이때 인덱스 값은 index - 1)
+- **Set the next property on that node to be the new node**
+  ⇒ 이전 노드의 next가 새롭게 생성된 후 삽입되는 노드를 가리키도록 설정
+- **Set the next property on the new node to be the previous next**
+  ⇒ 새 노드를 이전의 next 노드로 연결
+- **Increment the length**
+- **Return true**
+
+```jsx
+insert(index, val) {
+  // 예외상황 처리
+  if (index > this.length || index < 0) {
+    return false;
+  }
+
+  // 만약 0번 인덱스에 insert
+  // ! 를 붙이면 불린값의 반대가 나오는데, !!는 반대의 반대가 됨 ㄸ
+  if (index === 0) return !!this.unshift(val);
+  // 만약 마지막 인덱스에 insert
+  if (index === this.length) return !!this.push(val);
+
+  // prev Node 가져오기
+  const prev = this.get(index - 1);
+  const newNode = new Node(val);
+
+  // newNode에 다음 노드 연결
+  newNode.next = prev.next;
+
+  // prev의 next로 newNode 지정
+  prev.next = newNode;
+
+  this.length++;
+  return true;
+}
+```
+
+### Remove 메소드 구현
+
+- Removing a node from the Linked List at a **pecific** position
+  ⇒ 해당 인덱스의 노드를 지운다.
+
+**Remove pseudocode**
+
+- **If the index isless than zero or greater than the length, return undefined**
+  ⇒ 만약 해당 인덱스가 범위를 벗어나면 undefined 반환
+- **If the index is the same as the length-1, pop**
+  ⇒ 마지막 인덱스를 제거한다면 pop 호출
+- **If the index is 0, shift**
+  ⇒ 0번 인덱스를 제거한다면 shift 호출
+- **Otherwise, using the get method, access the node at the index - 1**
+  ⇒ get 메소드로 index - 1 번 노드를 가져온다
+- **Set the next property on that node to be the next of the next node**
+  ⇒ .next를 .next.next로 설정
+- **Decrement the length**
+- **Return the value of the node removed**
+
+```jsx
+remove(index) {
+  // 예외상황 처리
+  if (index < 0 || index >= this.length) return undefined;
+
+  // 0번 인덱스 제거
+  if (index === 0) return this.shift();
+
+  // 마지막 인덱스 제거
+  if (index === this.length - 1) return this.pop();
+
+  // 이전 노드를 찾는다
+  const prev = this.get(index - 1);
+
+  // 반환할 노드
+  const tmp = prev.next;
+
+  // 이전노드의 next를 다음다음 next로 바꾼다
+  prev.next = tmp.next;
+
+  this.length--;
+  return tmp;
 }
 ```
