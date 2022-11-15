@@ -17,8 +17,9 @@
 - [JavaScript 자료구조 & 알고리즘](./JavaScript/DataStructure/README.md)
   - [Big-O 표기법](./JavaScript/DataStructure/Big-O.md)
   - [Big-O of Arrays and Objects (배열과 오브젝트의 성능 평가)](./JavaScript/DataStructure/Big-O-of-Arrays-and-Objects.md)
-  - [Data Structures INTRO](./JavaScript/DataStructure/DataStructure-intro.md)
-  - [단일 연결 리스트 (Singly Linked List)](./JavaScript/DataStructure/SinglyLinkedList.md)
+  - [문제 해결 접근법](./JavaScript/DataStructure/solving-patterns-part1.md)
+  - [Data Structures](./JavaScript/DataStructure/DataStructure-intro.md)
+    - [단일 연결 리스트 (Singly Linked List)](./JavaScript/DataStructure/SinglyLinkedList.md)
 
 ## C / C++
 
