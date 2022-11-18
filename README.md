@@ -29,6 +29,7 @@
 - [컴퓨터의 작동 원리](./C-and-CPP/what-is-computer.md)
 - [C언어 BEFORE INTRO](./C-and-CPP/C-before-intro.md)
 - [C언어 INTRO](./C-and-CPP/C-intro.md)
+- [데이터와 C언어](./C-and-CPP/data.md)
 
 ## DevOps
 
