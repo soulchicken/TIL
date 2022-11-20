@@ -20,6 +20,7 @@
   - [Big-O 표기법](./JavaScript/DataStructure/Big-O.md)
   - [Big-O of Arrays and Objects (배열과 오브젝트의 성능 평가)](./JavaScript/DataStructure/Big-O-of-Arrays-and-Objects.md)
   - [문제 해결 접근법](./JavaScript/DataStructure/solving-patterns-part1.md)
+  - [문제 해결 패턴](./JavaScript/solving-patterns-part2.md)
   - [Data Structures](./JavaScript/DataStructure/DataStructure-intro.md)
     - [단일 연결 리스트 (Singly Linked List)](./JavaScript/DataStructure/SinglyLinkedList.md)
 
