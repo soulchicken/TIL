@@ -1,5 +1,20 @@
 # 데이터와 C언어
 
+**목차**
+
+- [데이터와 자료형](#데이터와-자료형)
+- [변수와 상수](#변수와-상수)
+- [scanf() 함수의 기본적인 사용법](#scanf-함수의-기본적인-사용법)
+- [정수와 실수](#정수와-실수)
+- [정수와 오버플로우](#정수와-오버플로우)
+- [다양한 정수형](#다양한-정수형들)
+- [8진수와 16진수](#8진수와-16진수)
+- [이식성이 높은 고정 너비 정수형](#이식성이-높은-고정-너비-정수형)
+- [문자형](#문자형)
+- [부동소수점형](#부동소수점형)
+- [부동소수점형의 한계](#부동소수점형의-한계)
+- [불리언형](#불리언형)
+
 ## 데이터와 자료형
 
 ![자료형1](./data/1.png){: width="300”}
@@ -417,4 +432,221 @@ int main(void)
 }
 >> AB      CDEF
 >> ABC     DEF
+```
+
+## 부동소수점형
+
+### 과학적 표기법 (Scientific Notations)
+
+- 123.45 = 12345 X 10^(-2) = 1.2345 X 10^2
+  - 위 예시에서 유효숫자는 5개
+  - 유효숫자 6개라면 1.23450 X 10^2
+- m X 10^n (m : significand, n : exponent)
+
+### **4바이트(32비트) 부동소수점수**
+
+- 0 01111100 01000000000000000000000 = 0.15625
+  - sign : 0
+  - exponent (8bits) : 01111100
+  - fraction (23bits) : 01000000000000000000000
+  - (+1) X 2(124-127) X (1 + 2^(-2))
+  - - 0.125 X 1.25
+  - - 0.15625
+
+### 4바이트 정수 범위와 부동소수점수 범위
+
+- **정수**
+  - -2,147,483,648 ~ 2,147,483,647
+  - 대략 -2.14 X 10^9 ~ 2.14 X 10^9
+- **부동소수점수**
+  - 대략 -3.4 X 10^38 ~ 3.4 X 10^38
+  - 10진수 유효숫자 6개 (정밀도가 떨어지게 된다)
+  - 정밀도 때문에 고정소수점을 위해서 정수를 활용하기도 한다.
+
+### 부동소수점수 사용하기
+
+- `float`형의 경우 뒤에 `f`를 추가하기!
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    printf("%u\n", sizeof(float));
+    printf("%u\n", sizeof(double));
+    printf("%u\n", sizeof(long double));
+
+    float f = 123.456f;
+    double d = 123.456;
+
+    float f2 = 123.456;
+    double d2 = 123.456f;
+
+    int i = 3;
+    float f3 = 3.f; // 3.0f
+    double d3 = 3.; // 3.0
+
+    float f4 = 1.234e10f; // 1.234f x 10^10
+    // 1.234E10f도 가능!
+    printf("%f", f4);
+
+    float f5 = 0xb.aP1; // 23.250000
+    double d5 =1.0625e0; // 0.0625
+
+}
+```
+
+### 부동소수점 printf
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    float f = 123.456f;
+    double d = 123.456;
+    float f5 = 0xb.aP1;
+    double d5 = 1.0625e0;
+    printf("%f %F %e %E\n", f, f, f, f);
+    printf("%f %F %e %E\n", d, d, d, d);
+    printf("%a %A\n", f5, f5); // 16진수와 대응하는 프린트 방식
+    printf("%a %A\n", d5, d5);
+}
+>> 123.456001 123.456001 1.234560e+02 1.234560E+02
+>> 123.456000 123.456000 1.234560e+02 1.234560E+02
+>> 0x1.74p+4 0X1.74P+4
+>> 0x1.1p+0 0X1.1P+0
+```
+
+## 부동소수점형의 한계
+
+### rount-off errors (ex1)
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    // rount-off errors (ex1)
+    float a, b;
+    a = 1000.0f + 1.0f;
+    b = a - 1000.0f;
+    printf("%f\n", b); // 1.00000이 출력된다.
+
+    a = 1.0E20f + 1.0f;
+    b = a - 1 / 0E20f; // b는 1.0이 나와야한다!
+    printf("%f\n", b); // -inf가 출력됐다.
+    // 숫자가 너무 크면 의도치않게 연산 에러가 나오게 된다.
+
+    return 0;
+}
+```
+
+### rount-off errors (ex2)
+
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    // rount-off errors (ex2)
+    float a = 0.0f;
+    for (int i = 0; i < 100; i++)
+    {
+        a = a + 0.01f; // 100번 0.01을 더한다면 1.0이 나와야한다.
+    }
+    printf("%f\n", a); // 0.99999가 나왔다!?
+		// 정밀도가 떨어진다!
+    return 0;
+}
+```
+
+### Overflow & underflow
+
+```c
+#include <stdio.h>
+#include <float.h>
+int main(void)
+{
+    // overflow
+    float max = FLT_MAX;
+    printf("%f\n", max); // float가 가질 수 있는 가장 큰 숫자
+    // 340282346638528859811704183484516925440.000000
+    //  3.40282346638528859811704183484516925440e+38F
+    max = max * 100.0f;  // 100배 하기!
+    printf("%f\n", max); // inf 가 출력된다!
+
+    // underflow
+    float min = 1.401298464e-45F; // float가 가질 수 있는 가장 작은 숫자
+    printf("%e\n", min);          // 1.175494e-38
+    min = min / 100.0f;           // subnormal때문에 0.0이 나와야함
+    printf("%e\n", min);
+
+    return 0;
+}
+```
+
+### Zero Division
+
+```c
+#include <stdio.h>
+#include <float.h>
+int main(void)
+{
+    // zero division
+    float f = 104.0f;
+    printf("%f\n", f); // 104.000000 출력!
+    f = f / 0.0f;      // 0으로 나누기!
+    printf("%f\n", f); // inf 출력!
+    return 0;
+}
+```
+
+### Not a Number (NAN)
+
+```c
+#include <stdio.h>
+#include <float.h>
+#include <math.h>
+
+int main(void)
+{
+    float f = asinf(1.0f); // 아크사인 1은?
+    printf("%f\n", f);     // 1.570796
+
+    f = asin(2.0f);    // 아크사인 2는 없는 수인데 어케 나올까?
+    printf("%f\n", f); // nan <- not a number 라는 뜻!
+
+    return 0;
+}
+```
+
+## 불리언형
+
+**Boolean Type**
+
+- 불리언은 결국 1, 0 (true, false)
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void)
+{
+    printf("%u\n", sizeof(_Bool)); // 1byte
+
+    _Bool b1;
+    b1 = 0;                     // false
+    printf("false : %d\n", b1); // 0
+    b1 = 1;                     // true
+    printf("true : %d\n", b1);  // 1
+
+    bool b2, b3;
+    b2 = true;
+    b3 = false;
+
+    printf("%d %d\n", b2, b3); // true, false : 1, 0
+
+    return 0;
+}
 ```
