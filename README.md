@@ -32,6 +32,11 @@
 - [C언어 BEFORE INTRO](./C-and-CPP/C-before-intro.md)
 - [C언어 INTRO](./C-and-CPP/C-intro.md)
 - [데이터와 C언어](./C-and-CPP/data.md)
+- [문자열과 형식 맞춘 입출력](./C-and-CPP/string.md)
+- [연산자, 표현식, 문장](./C-and-CPP/operator-statement-expression.md)
+- 반복문
+- 분기
+- [함수](./C-and-CPP/function.md)
 
 ## DevOps
 
