@@ -38,6 +38,11 @@
 - 분기
 - [함수](./C-and-CPP/function.md)
 
+## Linux
+
+- [INTRO](./Linux/intro.md)
+- [Command Basics](./Linux/basics.md)
+
 ## DevOps
 
 **AWS**
