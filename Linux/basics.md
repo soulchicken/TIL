@@ -59,3 +59,51 @@ $ cal
 
 - 좌우키로는 커서가 움직인다.
 - 위아래키로는 이전에 사용했던 명령어를 순회한다.
+
+## Command Structure
+
+**명령어 기본 구조 (규칙)**
+
+```jsx
+$ command -options arguments
+```
+
+### Arguments
+
+**인자, 매개변수, 피연산자**
+
+- 명령어에 같이 제공하는 값
+
+```jsx
+$ echo mwahahaha
+mwahahaha
+```
+
+- echo는 값을 넣으면 그대로 출력해줄 것이다.
+
+```bash
+$ ncal 2021
+2012년의 달력들 출력
+
+$ ncal 1999
+1999년의 달력들 출력
+
+$ ncal july 1969
+1969년 july의 달력 출력
+
+$ ncal 2021 may
+에러 발생~! (인자는 월, 달 순서)
+```
+
+- sort로 파일의 내용을 정렬하기
+
+```bash
+$ sort colors.txt
+blue
+green
+indigo
+orange
+red
+violet
+yellow
+```
