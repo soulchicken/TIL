@@ -11,5 +11,5 @@
 - [문자열과 형식 맞춘 입출력](./string.md)
 - [연산자, 표현식, 문장](./operator-statement-expression.md)
 - 반복문
-- 분기
+- [분기](./conditional.md)
 - [함수](./function.md)

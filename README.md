@@ -35,7 +35,7 @@
 - [문자열과 형식 맞춘 입출력](./C-and-CPP/string.md)
 - [연산자, 표현식, 문장](./C-and-CPP/operator-statement-expression.md)
 - 반복문
-- 분기
+- [분기](./C-and-CPP/conditional.md)
 - [함수](./C-and-CPP/function.md)
 
 ## Linux

@@ -237,3 +237,149 @@ int main(void)
     return 0;
 }
 ```
+
+## 기호적 상수와 전처리기
+
+**Symbolic Constants & #define**
+
+- 원주율 PI가 계속 사용되고 있는 ‘상수’인 경우
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+	float radius, area, circum;
+	printf("input radius : ");
+	scanf("%f", &radius);
+
+	area = 3.141592f * radius * radius;
+	circum = 3.141592f * 2.0 * radius;
+
+	printf("Area is %f\n", area);
+	printf("Circumference is %f\n", circum);
+
+	return 0;
+}
+```
+
+→ `#define`으로 `3.141592f`을 `PI`로 정의해준다
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#define PI 3.141592f
+
+int main()
+{
+	float radius, area, circum;
+	printf("input radius : ");
+	scanf("%f", &radius);
+
+	area = PI * radius * radius;
+	circum = PI * 2.0 * radius;
+
+	printf("Area is %f\n", area);
+	printf("Circumference is %f\n", circum);
+
+	return 0;
+}
+```
+
+### define
+
+- 선언할 때 대문자, 스네이크 케이스로!
+- 왜 `float PI = 3.141592f;` 로 안할까?
+    - 꼭 define으로 해야하는 것은 아니다. 그러나 변수가 갑자기 바뀌게 되는 경우 혼란이 될 수 있기 때문이다.
+    - 최근에는 `define`보다 `const float PI = 3.141592f;`로 선언을 더 권장한다.
+
+### 명백한 상수
+
+**Manifest Constants**
+
+- 명단 상수라고도 교재들에 나오곤 하는 개념.
+- Clear Or Obvious 느낌이라고 외국인들은 이야기한다.
+
+## printf() 함수의 **변환 지정자들**
+
+**Conversion Specifiers**
+
+```c
+printf(제어-문자열, 아이템1, 아이템2, ...)
+
+// 예시
+int a= 2;
+printf("%d + %d = %d", 1, a, 1 + a);
+```
+
+### 형식 지정자
+
+```c
+%[flags][width][.precision][length]specifier
+
+printf("%+10.5hi", 256);
+>>    +00256
+```
+
+| 포멧문자 | 설명 |
+| --- | --- |
+| %s | ·       문자열 (String)
+·       str() 내장 함수 사용 |
+| %r | ·       repr() 내장 함수 사용 |
+| %c | ·       문자 1개(character)
+·       '%c' % 'k |
+| %d | ·       10진 정수 (Integer)
+·       %5d: 5자리를 확보한 후 정수 포맷팅 |
+| %i | ·       %d와 동일 |
+| %f
+%F | ·       부동소수점 (floating-point) 실수
+·       %5.2f: 소수점 포함 총 5자리 확보한 후 2자리는 소수점 이하 자리수 |
+| %o
+%O | ·       8진수
+·       '%o' % 13 --> 15 |
+| %x
+%X | ·       16진수
+·       '%x' % 13 --> 'd'
+·       '%X' % 13 --> 'D' |
+| %u | ·       부호 없는 정수. 음수는 양수처럼 해석함
+·       '%u' % -12 --> '4294967284' |
+| %e
+%E | ·       부동 소수점 실수를 지수 형태로 표현
+·       %.2e: 2자리는 소수점 이하 자리수 |
+| %g
+%G | ·       부동 소수점을 편의에 따라 일반 실수 형식이나 지수 형식으로 변환합니다.
+·       즉, 값에 따라 %e 혹은 %f 으로 변환됩니다. |
+| %% | ·       Literal % (문자 % 자체) |
+| %p | ·       포인터 |
+
+문자열 내에서 ‘보기에만 줄바꿈’하기
+
+```c
+int main()
+{
+	printf("I am... \
+Iron MAN");
+	return 0;
+}
+
+>> I am... Iron MAN 출력!
+```
+
+### 포맷팅하기
+
+```c
+int main()
+{
+	printf("%9d\n", 12345); // 9칸에 (스페이스바로) 채워서!
+	printf("%09d\n", 12345); // 9칸인데, 0으로 채워서!
+	printf("%.2f\n", 3.141592); // 소숫점 2자리
+	printf("%.20f\n", 3.141592); // 소숫점 20자리
+}
+
+// 결과
+    12345
+000012345
+3.14
+3.14159200000000016217
+```
