@@ -65,3 +65,15 @@
 사용자 ↔ 시스템 프로그램, 응용 프로그램(System programs and application programs) ↔ 운영체제(OS) ↔ 커널(Kernel) ↔ 하드웨어 (CPU, 메모리, 보조기억장치, 입출력장치)
 
 - 요즘에는 프로그램을 하나만 실행하지 않는다. 여러가지 프로그램이 작동하고 있다면 모두가 하드웨어를 쓰기 위해서 경쟁하게 된다. 이때 **하드웨어 자원을 관리**해주는 역할도 **OS**가 해준다
+
+## 현대적 컴퓨터의 기본 구조
+
+### 내장형 프로그램 방식의 컴퓨터 : 폰 노이만 구조
+
+- Input Device → (Central Processing Unit(Control Unit, Artihmetic/Logic Unit) ↔ Memory Unit) → Output Device
+
+### 폰 노이만 구조에서 업그레이드 된 현대
+
+![현대의컴퓨터](./what-is-computer/1.png){: width="300”}
+
+- bus : 2진수로 된 데이터를 운반해주는 역할

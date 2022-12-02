@@ -291,8 +291,8 @@ int main()
 
 - 선언할 때 대문자, 스네이크 케이스로!
 - 왜 `float PI = 3.141592f;` 로 안할까?
-    - 꼭 define으로 해야하는 것은 아니다. 그러나 변수가 갑자기 바뀌게 되는 경우 혼란이 될 수 있기 때문이다.
-    - 최근에는 `define`보다 `const float PI = 3.141592f;`로 선언을 더 권장한다.
+  - 꼭 define으로 해야하는 것은 아니다. 그러나 변수가 갑자기 바뀌게 되는 경우 혼란이 될 수 있기 때문이다.
+  - 최근에는 `define`보다 `const float PI = 3.141592f;`로 선언을 더 권장한다.
 
 ### 명백한 상수
 
@@ -322,16 +322,17 @@ printf("%+10.5hi", 256);
 >>    +00256
 ```
 
-| 포멧문자 | 설명 |
-| --- | --- |
-| %s | ·       문자열 (String)
-·       str() 내장 함수 사용 |
-| %r | ·       repr() 내장 함수 사용 |
-| %c | ·       문자 1개(character)
-·       '%c' % 'k |
-| %d | ·       10진 정수 (Integer)
-·       %5d: 5자리를 확보한 후 정수 포맷팅 |
-| %i | ·       %d와 동일 |
+| 포멧문자                                   | 설명                          |
+| ------------------------------------------ | ----------------------------- |
+| %s                                         | ·       문자열 (String)       |
+| ·       str() 내장 함수 사용               |
+| %r                                         | ·       repr() 내장 함수 사용 |
+| %c                                         | ·       문자 1개(character)   |
+| ·       '%c' % 'k                          |
+| %d                                         | ·       10진 정수 (Integer)   |
+| ·       %5d: 5자리를 확보한 후 정수 포맷팅 |
+| %i                                         | ·       %d와 동일             |
+
 | %f
 %F | ·       부동소수점 (floating-point) 실수
 ·       %5.2f: 소수점 포함 총 5자리 확보한 후 2자리는 소수점 이하 자리수 |
@@ -399,32 +400,32 @@ printf("%+10.5hi", 256);
 
 - `flags`, `width`, `.precision`, `length`를 **Modifiers**라 한다.
 - `%+10.5hi`
-    - `+` : 오른쪽에 붙혀서 출력
-    - `10` : 10자리로 출력
-    - `.5` : 정밀도를 나타내는 숫자 5개
-    - `h` : 짧게
-    - `i` : 정수
+  - `+` : 오른쪽에 붙혀서 출력
+  - `10` : 10자리로 출력
+  - `.5` : 정밀도를 나타내는 숫자 5개
+  - `h` : 짧게
+  - `i` : 정수
 
 ### flags
 
-| flags | description |
-| --- | --- |
-| - | Left-justify within the given field width; Right justification is the default (see width sub-specifier). |
-| + | Forces to preceed the result with a plus or minus sign (+ or -) even for positive numbers. By default, only negative numbers are preceded with a - sign. |
-| (space) | If no sign is going to be written, a blank space is inserted before the value. |
-| # | Used with o, x or X specifiers the value is preceeded with 0, 0x or 0X respectively for values different than zero.Used with a, A, e, E, f, F, g or G it forces the written output to contain a decimal point even if no more digits follow. By default, if no digits follow, no decimal point is written. |
-| 0 | Left-pads the number with zeroes (0) instead of spaces when padding is specified (see width sub-specifier). |
+| flags   | description                                                                                                                                                                                                                                                                                                |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -       | Left-justify within the given field width; Right justification is the default (see width sub-specifier).                                                                                                                                                                                                   |
+| +       | Forces to preceed the result with a plus or minus sign (+ or -) even for positive numbers. By default, only negative numbers are preceded with a - sign.                                                                                                                                                   |
+| (space) | If no sign is going to be written, a blank space is inserted before the value.                                                                                                                                                                                                                             |
+| #       | Used with o, x or X specifiers the value is preceeded with 0, 0x or 0X respectively for values different than zero.Used with a, A, e, E, f, F, g or G it forces the written output to contain a decimal point even if no more digits follow. By default, if no digits follow, no decimal point is written. |
+| 0       | Left-pads the number with zeroes (0) instead of spaces when padding is specified (see width sub-specifier).                                                                                                                                                                                                |
 
 ### width
 
-| width | description |
-| --- | --- |
+| width    | description                                                                                                                                                                                          |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | (number) | Minimum number of characters to be printed. If the value to be printed is shorter than this number, the result is padded with blank spaces. The value is not truncated even if the result is larger. |
-| * | The width is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted. |
+| \*       | The width is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.                                                        |
 
 ### .precision
 
-| .precision | description |
-| --- | --- |
-| .number | For integer specifiers (d, i, o, u, x, X): precision specifies the minimum number of digits to be written. If the value to be written is shorter than this number, the result is padded with leading zeros. The value is not truncated even if the result is longer. A precision of 0 means that no character is written for the value 0.For a, A, e, E, f and F specifiers: this is the number of digits to be printed after the decimal point (by default, this is 6).For g and G specifiers: This is the maximum number of significant digits to be printed.For s: this is the maximum number of characters to be printed. By default all characters are printed until the ending null character is encountered.If the period is specified without an explicit value for precision, 0 is assumed. |
-| .* | The precision is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted. |
+| .precision | description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| .number    | For integer specifiers (d, i, o, u, x, X): precision specifies the minimum number of digits to be written. If the value to be written is shorter than this number, the result is padded with leading zeros. The value is not truncated even if the result is longer. A precision of 0 means that no character is written for the value 0.For a, A, e, E, f and F specifiers: this is the number of digits to be printed after the decimal point (by default, this is 6).For g and G specifiers: This is the maximum number of significant digits to be printed.For s: this is the maximum number of characters to be printed. By default all characters are printed until the ending null character is encountered.If the period is specified without an explicit value for precision, 0 is assumed. |
+| .\*        | The precision is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
