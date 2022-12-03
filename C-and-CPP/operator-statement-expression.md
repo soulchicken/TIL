@@ -127,3 +127,55 @@ int main()
 - 이항 연산 (Binary operator) `3 - 2` : 피연산자 2개, 값이 1
 - 단항 연산 (Unary operator) `-16` : 피연산자 1개, 값이 -16
 - 복합 `-(12-11)` : 값이 -1
+
+### 나누기 연산
+
+- 정수 나눗셈을 하면 0에 가깝게 소숫점을 절삭한다
+- 정수와 실수형을 나눗셈하면 실수로 결과를 만든다
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+	printf("Integer divisions\n");
+	printf("%d\n", 14 / 7);
+	printf("%d\n", 7 / 2); // 3.5
+	printf("%d\n", 7 / 3); // 2.333
+	printf("%d\n", 7 / 4); // 1.75
+	printf("%d\n", 8 / 4); // 2
+
+	printf("\nTruncating toward zero (C99)\n");
+	printf("%d\n", -7 / 2); // -3.5
+	printf("%d\n", -7 / 3); // -2.333
+	printf("%d\n", -7 / 4); // -1.75
+	printf("%d\n", -8 / 4); // -2
+
+	printf("\nInteger divisions\n");
+	printf("%f\n", 9.0 / 4.0);
+	printf("%f\n", 9.0 / 4);
+	return 0;
+}
+```
+
+**결과**
+
+```c
+Integer divisions
+2
+3
+2
+1
+2
+
+Truncating toward zero (C99)
+-3
+-2
+-1
+-2
+
+Integer divisions
+2.250000
+2.250000
+```

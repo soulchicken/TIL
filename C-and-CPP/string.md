@@ -429,3 +429,64 @@ printf("%+10.5hi", 256);
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | .number    | For integer specifiers (d, i, o, u, x, X): precision specifies the minimum number of digits to be written. If the value to be written is shorter than this number, the result is padded with leading zeros. The value is not truncated even if the result is longer. A precision of 0 means that no character is written for the value 0.For a, A, e, E, f and F specifiers: this is the number of digits to be printed after the decimal point (by default, this is 6).For g and G specifiers: This is the maximum number of significant digits to be printed.For s: this is the maximum number of characters to be printed. By default all characters are printed until the ending null character is encountered.If the period is specified without an explicit value for precision, 0 is assumed. |
 | .\*        | The precision is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
+### specifier
+
+![spectifier](./string/1.png){: width="300”}
+
+### 예시
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <limits.h>
+
+int main()
+{
+	printf("%10i\n", 1234567);
+	printf("%-10i\n", 1234567);
+	printf("%+i \n%+i\n", 123, -123);
+	printf("% i \n% i\n",123,-123);
+	printf("%X\n", 17);
+	printf("%#X\n", 17);
+	printf("%05i\n", 123);
+	printf("%*i\n", 7, 456);
+
+	printf("\nPrecision\n");
+	printf("%.3d\n", 1024);
+	printf("%.5d\n", 1024);
+	printf("%.3f\n", 123456.1234567);
+	printf("%.3f\n", 123456.1235);
+
+	printf("\nLength\n");
+	printf("%hhd % hd %d\n", 257, 257, 257);
+	printf("%d % ld %lld\n", INT_MAX + 1, INT_MAX, 2147483648LL);
+
+	return 0;
+}
+```
+
+**결과**
+
+```c
+   1234567
+1234567
++123
+-123
+ 123
+-123
+11
+0X11
+00123
+    456
+
+Precision
+1024
+01024
+123456.123
+123456.124
+
+Length
+1  257 257
+-2147483648  2147483647 2147483648
+```
