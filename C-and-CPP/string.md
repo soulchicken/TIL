@@ -527,7 +527,7 @@ printf("%f %lld %d\n\n", n1, n2, n3); // 4, 4, 4 (Y, N, Y)
 ```
 
 - int를 %d로 했는데도 2번째 printf에서 오류가 나온 이유
-    - 수능볼 때 OMR카드 밀려쓴 것과 비슷한 이유 바이트가 밀려서 그렇다.
+  - 수능볼 때 OMR카드 밀려쓴 것과 비슷한 이유 바이트가 밀려서 그렇다.
 
 ## scanf() 함수의 사용법
 
@@ -569,3 +569,62 @@ printf("%i\n", c); // 아스키코드 출력
 ```
 
 - 빈칸을 입력하면 아스키코드 32인 빈칸문자로 받아들인다.
+
+**unsigned**
+
+```c
+int main()
+{
+	unsigned i;
+	scanf("%i", &i); // try negative number
+	printf("%i\n", i);
+
+>> -123 입력시
+>> -123 출력
+
+	scanf("%u", &u); // unsigned는 unsigned 답게
+	printf("%u\n", u);
+>> -123 입력시
+>> 4294967173
+	return 0;
+}
+```
+
+- 변수 선언을 unsigned로 했지만 scanf로 입력을 signed로 하는 경우 printf도 잘 나와버리는 상황이 나온다. → 그러나 헷깔리는 트릭은 안쓰는 것이 좋다.
+
+**float, double**
+
+```c
+int main()
+{
+	// l for double for %f, %e, %E, %g
+	double d = 0.0;
+	scanf("%f", &d); // f
+	printf("%f\n", d); // f
+>> 3.14 입력
+>> 0.000000 출력
+
+	scanf("%lf", &d); // lf
+	printf("%f\n", d); // f
+>> 3.14 입력
+>> 3.140000 출력
+	return 0;
+}
+```
+
+**width**
+
+몇 글자까지만 입력 받을 것인지 제한 할 수 있다.
+
+```c
+int main()
+{
+	char str[30];
+	scanf("%5s", str);
+	printf("%s\n", str);
+
+>> asdasdasd 입력
+>> asdas 출력
+	return 0;
+}
+```
