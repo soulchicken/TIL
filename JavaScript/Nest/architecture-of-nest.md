@@ -25,8 +25,8 @@ $ nest new project-name
 **main.ts**
 
 ```tsx
-import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./app.module";
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -40,9 +40,9 @@ bootstrap();
 **app.module.ts**
 
 ```tsx
-import { Module } from "@nestjs/common";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [],
@@ -59,8 +59,8 @@ export class AppModule {}
 **app.controller.ts**
 
 ```tsx
-import { Controller, Get } from "@nestjs/common";
-import { AppService } from "./app.service";
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
@@ -78,12 +78,12 @@ export class AppController {
 **app.service.ts**
 
 ```tsx
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
   getHello(): string {
-    return "Hello World!";
+    return 'Hello World!';
   }
 }
 ```
@@ -96,8 +96,8 @@ Express의 라우터같은 존재
 - Controller에 `/hello` 를 추가하기
 
 ```tsx
-import { Controller, Get } from "@nestjs/common";
-import { AppService } from "./app.service";
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
@@ -108,9 +108,9 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get("/hello")
+  @Get('/hello')
   sayHello(): string {
-    return "Hello everyone~!";
+    return 'Hello everyone~!';
   }
 }
 ```
@@ -125,8 +125,8 @@ export class AppController {
 **controller**
 
 ```tsx
-import { Controller, Get } from "@nestjs/common";
-import { AppService } from "./app.service";
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
@@ -137,7 +137,7 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get("/hello")
+  @Get('/hello')
   sayHello(): string {
     return this.appService.sayHi();
   }
@@ -147,16 +147,16 @@ export class AppController {
 **service**
 
 ```tsx
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
   getHello(): string {
-    return "Hello World!";
+    return 'Hello World!';
   }
 
   sayHi(): string {
-    return "hello~! Everyone~!!!!";
+    return 'hello~! Everyone~!!!!';
   }
 }
 ```
