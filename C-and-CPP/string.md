@@ -628,3 +628,114 @@ int main()
 	return 0;
 }
 ```
+
+### integer with characters
+
+- int형에 문자까지 같이 입력하면 어떻게 될까?
+
+```c
+int main()
+{
+	int i;
+	scanf("%i", &i);
+	printf("%i", i);
+	return 0;
+}
+>> 123a123 입력!
+>> 123 출력!
+```
+
+- `printf`의 해석을 중단하고 숫자까지만 `i`에 넣어주게 된다.
+
+### j modifier
+
+- portable type이라는 차이점 외에는 똑같이 사용할 수 있다.
+
+```c
+#include <stdio.h>
+#include <inttypes.h>
+
+int main()
+{
+	intmax_t i; // longlong
+	scanf("%ji", &i); // 1024
+	printf("%ji", i); // 1024
+	return 0;
+}
+```
+
+### Regular characters
+
+- `scanf`시에 의도한대로 %를 띄워주지 않으면 옳지 않은 결과가 나오게 된다.
+
+```c
+int main()
+{
+	int a, b;
+	scanf("%d,%d",&a, &b);
+	printf("%d %d\n", a, b);
+	return 0;
+}
+>> 123,123 입력시 123 123 출력!
+>> 123 123 입력시 123 858993460 출력!
+>> 123 ,456 입력시 123 -858993460 출력!
+>> 123(엔터) 입력시 123 -858993460 출력!
+```
+
+- 빈칸을 넣는다면?
+
+```c
+int main()
+{
+	int a, b;
+	scanf("%d ,%d",&a, &b);
+	printf("%d %d\n", a, b);
+	return 0;
+}
+>> 123 ,123 입력시 123 123 출력!
+>> 123       ,123 입력시 123 123 출력!
+>> 123, 123 입력시 오류
+```
+
+- 콤마(,)만이 아니라 다른 기호, 문자도 똑같이 활용할 수 있다.
+
+```c
+int main()
+{
+	int a, b;
+	scanf("%dA%d",&a, &b);
+	printf("%d %d\n", a, b);
+	return 0;
+}
+>> 123A123 입력시 123 123 출력!
+```
+
+- blank도 받을 수 있다.
+
+```c
+int main()
+{
+	int a, b;
+	char c;
+	scanf("%d%c%d",&a, &c, &b);
+	printf("%d|%c|%d\n", a, c, b);
+	return 0;
+}
+>> 123 456 입력시 123| |456 출력!
+>> 123A456 입력시 123|A|456 출력!
+```
+
+### scanf의 return값
+
+- 입력받은 값의 갯수를 의미한다.
+
+```c
+int main()
+{
+	int a, b;
+	int i = scanf("%d%d",&a, &b);
+	printf("%d\n", i);
+	return 0;
+}
+>> 123 123 입력시 2 출력!
+```

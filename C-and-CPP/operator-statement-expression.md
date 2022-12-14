@@ -189,3 +189,67 @@ Integer divisions
 ### 연산자 우선순위
 
 ![연산자 우선순위](./expression/2.png){: width="300”}
+
+## 나머지 연산자
+
+- `%`를 사용한다.
+
+```c
+int a = 13 % 5; // a = 3
+int b = 90 % 60; // b = 30
+```
+
+- 전체 ‘초’를 가지고 시간, 분, 초로 나눠서 계산하기
+
+```c
+int main()
+{
+	int input_seconds = 0;
+	int hours = 0, minutes = 0, seconds = 0;
+
+	printf("Input seconds : ");
+	scanf("%d", &input_seconds);
+	seconds = input_seconds % 60;
+	input_seconds /= 60;
+
+	minutes = input_seconds % 60;
+	input_seconds /= 60;
+
+	hours = input_seconds % 60;
+	input_seconds /= 60;
+	printf("%d hours, %d minutes, %d seconds\n", hours, minutes, seconds);
+
+
+	printf("Good bye~!\n");
+	return 0;
+}
+```
+
+### 음수 나누기
+
+```c
+int main()
+{
+	int div, mod;
+	div = 11 / 5;
+	mod = 11 % 5;
+	printf("div : %d, mod : %d\n", div, mod);
+	div = 11 / -5;
+	mod = 11 % -5;
+	printf("div : %d, mod : %d\n", div, mod);
+	div = -11 / -5;
+	mod = -11 % -5;
+	printf("div : %d, mod : %d\n", div, mod);
+	div = -11 / 5;
+	mod = -11 % 5;
+	printf("div : %d, mod : %d\n", div, mod);
+
+	return 0;
+}
+>> div : 2, mod : 1
+>> div : -2, mod : 1
+>> div : 2, mod : -1
+>> div : -2, mod : -1
+```
+
+- 나머지의 경우 피 연산자(앞의 수)가 양수면 양수, 음수면 음수가 된다.
