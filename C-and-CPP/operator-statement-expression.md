@@ -253,3 +253,58 @@ int main()
 ```
 
 - 나머지의 경우 피 연산자(앞의 수)가 양수면 양수, 음수면 음수가 된다.
+
+## 증가 / 감소 연산자
+
+- `++`, `--`
+- 변수의 앞에 붙는다면 전위 연산자, 뒤에 붙는다면 후위 연산자라고 한다.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int a = 0;
+    a++;
+    printf("%d\n",a);// 1
+    ++a;
+    printf("%d\n",a);// 2
+    printf("%d\n",a++);// 2가 출력되고 a는 3
+    printf("%d\n",++a);// 4가 출력되고 a는 4
+    return 0;
+}
+```
+
+- 전위 연산자는 미리 ++ 연산이 끝난 이후에 나머지 일들이 일어나고 후위 연산은 반대
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int i = 1, j = 1;
+    int i_post, pre_j;
+
+    i_post = i++;
+    pre_j = ++j;
+
+    printf("%d %d\n",i,j); // 2 2
+    printf("%d %d\n",i_post,pre_j); // 1 2
+    return 0;
+}
+```
+
+- 꼬아놔도 무섭지 않음
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int x, y, z;
+    x = 3, y = 4;
+    z = (x + y++);// 3+4연산을 하고 난 이후에 y = 5가 된다
+printf("%d %d %d\n",x,y,z);
+    return 0;
+}
+```
