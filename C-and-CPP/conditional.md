@@ -166,7 +166,7 @@ int main()
 }
 ```
 
-### 숫자를 *로 바꾸기
+### 숫자를 \*로 바꾸기
 
 ```c
 #include <stdio.h> // getchar, putchar
@@ -199,6 +199,37 @@ int main()
             ch -= 'a' - 'A';
         else if (ch >= 'A' && ch <= 'Z')
             ch += 'a' - 'A';
+        putchar(ch);
+    }
+    putchar(ch);
+    return 0;
+}
+```
+
+## ctype.h 문자 함수
+
+- **튜토리얼**
+
+[ctype.h - Google Search](http://google.com/search?q=ctype.h&sourceid=chrome&ie=UTF-8)
+
+- 위에서 만든 소문자와 대문자 바꾸기와 숫자를 \*로 바꾸는 방법을 라이브러리를 활용해서 만들 수 있다.
+- 문자에 대한 판별, 변환을 해주는 라이브러리이기 때문에 갱장히 편리함
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char ch;
+    while((ch = getchar()) != '\n')
+    {
+        if (islower(ch))
+            ch = toupper(ch);
+        else if (isupper(ch))
+            ch = tolower(ch);
+        else if (isdigit(ch))
+            ch = '*';
         putchar(ch);
     }
     putchar(ch);
