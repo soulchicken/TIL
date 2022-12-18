@@ -739,3 +739,38 @@ int main()
 }
 >> 123 123 입력시 2 출력!
 ```
+
+### modifier \* 를 통한 printf()
+
+```c
+int main()
+{
+	int i = 123;
+	int width = 5;
+	printf("Input width : ");
+	scanf("%d", &width);
+	printf("%*d\n", width, i);
+	return 0;
+}
+
+<< 3 입력!
+>> 123 출력!
+<< 10 입력!
+>>        123 출력! (공백이 7개 있는 총 10칸으로 출력!)
+```
+
+### modifier \* 를 통한 scanf()
+
+- `*`이 있는 경우 무시가 된다. (빈칸, 줄바꿈으로 구분한다.)
+
+```c
+int main()
+{
+	int i;
+	scanf("%*d%*d%d", &i);
+	printf("Your third input %d\n", i);
+	return 0;
+}
+<< 123(엔터)456(스페이스바)789 입력!
+>> Your third input 789 출력!
+```

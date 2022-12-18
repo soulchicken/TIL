@@ -308,3 +308,24 @@ printf("%d %d %d\n",x,y,z);
     return 0;
 }
 ```
+
+## 표현식과 문장
+
+- Expressions 표현식. Statements 문장.
+
+### 표현식 Expressions
+
+![표현식](./expression/3.png){: width="300”}
+
+- 대입의 경우 사이드이펙트(부가적인 효과)라고 본다.
+
+### 문장 statements
+
+![문장](./expression/4.png){: width="300”}
+
+### 부가효과 or 부차효과 Side effect
+
+![부가효과](./expression/5.png){: width="300”}
+
+- 컴파일러는 `;` 세미콜론이 있어야 표현식을 읽어도 된다고 받아들인다.
+- `++` 연산이 두 개 있는 경우는 어느 타이밍에 연산을 수행할 지 애매하게 된다. 이런 경우는 컴파일러마다 다른 값이 나올 수 있기 때문에 피해줘야한다.
