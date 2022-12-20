@@ -12,4 +12,5 @@
 - [연산자, 표현식, 문장](./operator-statement-expression.md)
 - 반복문
 - [분기](./conditional.md)
+- [문자 입출력과 입력 유효성 검증](./IO.md)
 - [함수](./function.md)

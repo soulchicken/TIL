@@ -291,3 +291,35 @@ int main()
 	return 0;
 }
 ```
+
+## else와 if의 짝짓기
+
+컴파일러는 인덴트를 무시하기 때문에 조심해야한다.
+
+```c
+int number;
+scanf("%d", &number);
+
+/* 속으면 안된다! */
+if (number > 5)
+	if (number < 10)
+		printf("Larger than 5 smaller than10\n");
+else
+	printf("Less than or equal to 5\n");
+
+/* 위와 똑같은 코드 */
+if (number > 5)
+	if (number < 10)
+		printf("Larger than 5 smaller than10\n");
+	else
+	printf("Less than or equal to 5\n");
+
+/* 괄호로 묶으면 아래와 같다. */
+/* else의 위치로 속으면 안된다. 복잡한 상황에서는 괄호로 묶어주자 */
+if (number > 5) {
+		if (number < 10)
+			printf("Larger than 5 smaller than10\n");
+		else
+			printf("Less than or equal to 5\n");
+}
+```

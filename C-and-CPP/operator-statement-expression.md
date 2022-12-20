@@ -354,3 +354,49 @@ int i = 0;
 ```
 
 ![순서도예시](./expression/7.png){: width="300”}
+
+## 자료형 변환
+
+**Type Conversions. 형변환**
+
+### promotions in assignments
+
+작은 규모의 자료형에서 큰 규모의 자료형으로는 문제가 생기지 않는다.
+
+```c
+short s = 64;
+int i = s;
+
+float f = 3.14f;
+double d = f;
+```
+
+### demotion in assignments
+
+컴파일시 워닝이 뜬다. (truncation, 절삭이 발생)
+
+```c
+float f;
+double d;
+d = 1.25;
+f = 1.25;
+f = 1.123; // truncation
+```
+
+### ranking of types in operations
+
+1. long double > double > float
+2. unsigned long long, long long
+3. unsigned long, long
+4. unsigned, int
+5. short int, unsigned short int
+6. signed char, char, unsigned char
+7. \_Bool
+
+```c
+float f;
+double d;
+f = 1.25f;
+d = f + 1.234; // double로 두 수를 변환해서 double끼리 더하는 연산을 하게 된다.
+f = f + 1.234; // float + double은 double.
+```
