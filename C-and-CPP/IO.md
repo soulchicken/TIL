@@ -68,3 +68,53 @@ int main()
 >> hello. 입력!
 >> (hello.은 사라짐) hello
 ```
+
+## 파일의 끝
+
+**EOP (End of File)**
+
+- `-1` 이다 (…)
+- 운영체제가 더 이상 입력받을 것이 없다는 것을 알려주면 `getchar()`에서 `-1`을 리턴해준다.
+- 파일 입력과 콘솔 입력은 사실 동일하다.
+  - 콘솔에서 `EOF`를 날려주려면 `Ctrl + Z`
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    char c;
+    while ((c = getchar() != EOF)) // End of File
+    {
+        putchar(c);
+    }
+    return 0;
+}
+```
+
+### EOF 확인하기
+
+```c
+#define_CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+    char c;
+    while (1)// End of File
+{
+        c = getchar();
+        printf("%d\n", c);
+        if (c ==EOF)
+            break;
+    }
+    return 0;
+}
+<< hi엔터 입력!
+>> 104 출력(h)
+>> 105 출력(i)
+>> 10 출력(엔터)
+<< Ctrl+Z 엔터 입력!
+>> -1 출력 (EOF)
+```
