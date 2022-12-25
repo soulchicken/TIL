@@ -49,7 +49,7 @@ int main()
 **Psuedocode**
 
 - 사람의 언어로 코드를 작성하는 것. 문법보다는 논리 자체에 집중한다.
-    - 언어와 분리되어 있기 때문에 누구든 논리를 이해할 수 있다.
+  - 언어와 분리되어 있기 때문에 누구든 논리를 이해할 수 있다.
 - 예시로 사용했던 코드 옆에 의사코드를 적어본다면 이러하다.
 
 ```c
@@ -68,4 +68,61 @@ int main()
     printf("Sum = %d\n", sum); // sum을 출력한다.
     return 0;
 }
+```
+
+## 진입조건 루프 while
+
+**Entry-Condition Loop**
+
+```bash
+while (expression)
+        statement
+```
+
+- `expression`이 `true`일 때 `statement` 실행
+
+### 무한 루프
+
+```c
+int i;
+i = 1;
+while (i < 5) // infinite loop
+    printf("Hi!\n");
+```
+
+### 잘못된 루프 - 탈출조건
+
+```c
+int i;
+i = 1;
+while (--i < 5) // wrong direction
+    printf("Hi!\n");
+```
+
+### 잘못된 루프 2 - 중괄호를 사용하자
+
+```c
+int i;
+i = 1;
+while (i < 5) // wrong direction
+    printf("Hi!\n");
+    i++; // while문 바깥에 있다
+```
+
+### 진입할 수 없는 루프
+
+```c
+int i;
+i = 10;
+while (i++ < 5) // cannot enter
+    printf("Hi!\n");
+```
+
+### null statement
+
+```c
+int i;
+i = 0;
+while (i++ < 5); // null statement
+    printf("%i\n", i);
 ```
