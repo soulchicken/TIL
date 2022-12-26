@@ -126,3 +126,79 @@ i = 0;
 while (i++ < 5); // null statement
     printf("%i\n", i);
 ```
+
+## 관계 연산자
+
+**Reational Operators**
+
+```c
+<, <=, ==, >=, > !=
+```
+
+## 참과 거짓
+
+참 : 1 (0이 아님)
+
+거짓 : 0
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int tv, fv;
+    tv = (1 < 2);
+    fv = (1 > 2);
+
+    printf("True is %d\n", tv);
+    printf("False is %d\n", fv);
+    return 0;
+}
+
+>> True is 1
+>> False is 0
+```
+
+### 0이 아니면 양수는 True
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int i = 5;
+    while (i)
+        printf("%d is true\n", i--);
+    printf("%d is false\n",i);
+    return 0;
+}
+
+>> 5 is true
+>> 4 is true
+>> 3 is true
+>> 2 is true
+>> 1 is true
+>> 0 is false
+```
+
+### 0이 아니면 음수라도 True
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int i = -5;
+    while (i)
+        printf("%d is true\n", i++);
+    printf("%d is false\n",i);
+    return 0;
+}
+
+>> -5 is true
+>> -4 is true
+>> -3 is true
+>> -2 is true
+>> -1 is true
+>> 0 is false
+```
