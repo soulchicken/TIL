@@ -202,3 +202,33 @@ int main()
 >> -1 is true
 >> 0 is false
 ```
+
+## _Bool 자료형
+
+- 전통적인 C언어에서는 정수 0, 1으로 참 거짓을 판별했다.
+- 기존의 판별 방법과 호환하기 위해서 남겨놓고 언더스코어(`_`)가 붙은 자료형으로 생겨났다.
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdbool.h>
+
+int main()
+{
+    _Bool boolean_true = (2 > 1);
+    _Bool boolean_false = (2 < 1);
+    printf("True is %d\n", boolean_true);
+    printf("False is %d\n", boolean_false);
+
+    // 삼항 연산자 or 조건 연산자 사용하기
+    printf(boolean_true ? "true" : "false");
+    printf("\n");
+    printf(boolean_false ? "true" : "false");
+    return 0;
+}
+
+>> True is 1
+>> False is 0
+>> true
+>> false
+```
