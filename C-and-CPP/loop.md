@@ -203,7 +203,7 @@ int main()
 >> 0 is false
 ```
 
-## _Bool 자료형
+## \_Bool 자료형
 
 - 전통적인 C언어에서는 정수 0, 1으로 참 거짓을 판별했다.
 - 기존의 판별 방법과 호환하기 위해서 남겨놓고 언더스코어(`_`)가 붙은 자료형으로 생겨났다.
@@ -232,3 +232,27 @@ int main()
 >> true
 >> false
 ```
+
+## 관계 연산자의 우선순위
+
+[Operators Precedence in C](https://www.tutorialspoint.com/cprogramming/c_operators_precedence.htm)
+
+| Category       | Operator                         | Associativity |
+| -------------- | -------------------------------- | ------------- | ------------- | ------------- |
+| Postfix        | () [] -> . ++ - -                | Left to right |
+| Unary          | + - ! ~ ++ - - (type)\* & sizeof | Right to left |
+| Multiplicative | \* / %                           | Left to right |
+| Additive       | + -                              | Left to right |
+| Shift          | << >>                            | Left to right |
+| Relational     | < <= > >=                        | Left to right |
+| Equality       | == !=                            | Left to right |
+| Bitwise AND    | &                                | Left to right |
+| Bitwise XOR    | ^                                | Left to right |
+| Bitwise OR     |                                  |               | Left to right |
+| Logical AND    | &&                               | Left to right |
+| Logical OR     |                                  |               |               | Left to right |
+| Conditional    | ?:                               | Right to left |
+| Assignment     | = += -= \*= /= %=>>= <<= &= ^=   | =             | Right to left |
+| Comma          | ,                                | Left to right |
+
+- 의외로 `== !=`는 `< <= > >=` 보다 우선순위가 낮다.
