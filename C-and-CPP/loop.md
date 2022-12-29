@@ -256,3 +256,22 @@ int main()
 | Comma          | ,                                | Left to right |
 
 - 의외로 `== !=`는 `< <= > >=` 보다 우선순위가 낮다.
+
+## for 루프 소개
+
+- counting loop (vs Indefinite loop `while`)
+- 유연하고 의도를 분명하게 사용할 수 있는 반복문이라서 자주 사용
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%d ", i);
+    }
+}
+```
+
+- `i++`이 일어난 이후에 `i < 10`을 판별한다.
