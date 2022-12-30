@@ -275,3 +275,63 @@ int main()
 ```
 
 - `i++`이 일어난 이후에 `i < 10`을 판별한다.
+
+## for 문의 유연성
+
+- 유연하게 여러 방식으로 사용 가능한 for 문
+
+```c
+for (int i = 10; i > 0; i--)
+{
+    printf("%d ", i);
+}
+
+for (int i = 0; i < 100; i = i + 8)
+{
+    printf("%d ", i);
+}
+
+for (char c = 'A'; c <= 'Z'; c++)
+{
+    printf("%c ", c);
+}
+
+for (int i = 0; i * i < 10; i++)
+{
+    printf("%d ", i);
+}
+
+for (int x = 1, y = 5; y <= 20; y = (++x * 3) + 10)
+{
+    printf("%d ", x);
+}
+
+for (double d = 100.0; d < 300; d = d * 1.1)
+{
+    printf("%f\n", d);
+}
+```
+
+### for문 내의 blank
+
+```c
+int i, n;
+n = 2;
+for (i = 2; n < 10;)
+{
+    n = n * i;
+
+    /* 어쩌고 저쩌고 */
+}
+
+for (;;) /* while문과 같음 */
+    printf("I love U!");
+```
+
+### 과하지만 for 문을 활용하는 방법
+
+```c
+int i = 0;
+for (printf("Let's go!\n"); i != 7; scanf("%d", &i))
+    ; // null statement
+```
