@@ -323,3 +323,31 @@ if (number > 5) {
 			printf("Less than or equal to 5\n");
 }
 ```
+
+## 소수 판단 예제
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    unsigned num;
+    int isPrime = 1; // flag
+
+    scanf("%u", &num);
+
+    for (unsigned div = 2; div < num; div++)
+    {
+        if (!(num % div))
+        {
+            isPrime = 0;
+            break;
+        }
+    }
+
+    if (isPrime)
+        printf("%u is a prime number.\n", num);
+    else
+        printf("%u is not a prime number.\n", num);
+}
+```
