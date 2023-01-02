@@ -335,3 +335,49 @@ int i = 0;
 for (printf("Let's go!\n"); i != 7; scanf("%d", &i))
     ; // null statement
 ```
+
+## 다양한 대입 연산자
+
+- 우선순위는 콤마 연산자(`,`) 다음으로 **가장 낮다**.
+  - assignment(`=`)는 가장 마지막에 하는 것이 맞기 때문
+
+```c
++= *= *= /= %=
+```
+
+### 성능을 신경쓴다면?
+
+- 사실 요즘 컴파일러가 좋아져서 성능차이가 없으니 가독성이 높으니 대입 연산자를 쓰는 것이 좋다. 그러나 엄밀히 따지면 대입 연산자보다는 일반 연산이 더 빠르다.
+  - `i += 2` 보다 `i = i + 2` 가 더 빠르긴 하다.
+
+## 콤마 연산자
+
+- comma : `,`
+- 연산자 우선 순위 중에서 가장 낮음
+
+### 구분 (separators)
+
+```c
+for (int n = 0, nsqr = n * n; n < 10; n++, nsqr = n * n)
+    printf("%d %d\n", n, nsqr);
+```
+
+### sequence point
+
+```c
+int i, j;
+i = 1;
+i++, j = i;
+printf("%d %d\n", i, j);
+
+int x, y, x;
+z = x = 1, y = 2;
+printf("%d %d %d\n", x, y, z); // 1, 2, 1
+z = (x = 1), (y = 2);
+printf("%d %d %d\n", x, y, z); // 1, 2, 1
+z = ((x = 1), (y = 2));
+printf("%d %d %d\n", x, y, z); // 1, 2, 2
+
+int money = (123, 456);
+printf("%d\n", money); // 456
+```
