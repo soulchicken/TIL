@@ -130,3 +130,29 @@ $ sort -r colors.txt // 정렬 순서 반대로
 ```bash
 ncal -h != ncal -H
 ```
+
+## Combining Options
+
+**여러 옵션 묶어쓰기**
+
+```bash
+$ ncal -3 -h // 하이라이트를 없애고 3달치 달력 출력
+$ ncal -3 -h -j
+$ ncal -3hj // 묶어서 사용 가능
+```
+
+## Long Form Options
+
+**긴 형태 옵션 사용하기**
+
+```bash
+date -u == date --universal
+
+sort -r color.txt == sort --reverse colors.txt
+
+sort --reverse --unique colors.txt
+== sort -r -u colors.txt
+== sort -ru colors.txt
+```
+
+- 대부분 옵션에는 Long Form을 지원해주지 않지만 종종 있다. 직관적으로 보고 이해할 수 있는 장점이 있다.
