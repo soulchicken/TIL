@@ -381,3 +381,52 @@ printf("%d %d %d\n", x, y, z); // 1, 2, 2
 int money = (123, 456);
 printf("%d\n", money); // 456
 ```
+
+## 탈출조건 루프 do while
+
+**Exit-Condition Loop**
+
+### while문을 활용해서 비밀번호 입력하는 프로그램 만들기
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    const int PASSWORD = 3333;
+    int guess = 0;
+
+    printf("Enter password : ");
+    scanf("%d", &guess);
+
+    while (guess != PASSWORD)
+    {
+        printf("Enter password : ");
+        scanf("%d", &guess);
+    }
+
+    printf("Good!\n");
+}
+```
+
+### do-while문으로 비밀번호 입력하는 프로그램 만들기
+
+- 무조건 1번 입력을 받아야하는 이 프로그램 특성상 유용하다
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    const int PASSWORD = 3333;
+    int guess = 0;
+
+    do
+    {
+        printf("Enter password : ");
+        scanf("%d", &guess);
+    } while (guess != PASSWORD);
+
+    printf("Good!\n");
+}
+```
