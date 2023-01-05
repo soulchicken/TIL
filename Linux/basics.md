@@ -156,3 +156,47 @@ sort --reverse --unique colors.txt
 ```
 
 - 대부분 옵션에는 Long Form을 지원해주지 않지만 종종 있다. 직관적으로 보고 이해할 수 있는 장점이 있다.
+
+## Options With Parameters
+
+**매개변수를 필요로 하는 옵션**
+
+- 일부 옵션은 옵션에 대한 값을 같이 지정해줘야한다.
+
+```bash
+# 지금 달력과 이후 1달치 달력까지 보여줘
+$ ncal -A1 # A : 이후(after)
+
+# 이전 2달치 달력과 함께 보여줘
+$ ncal -B2 # B : 이전(before)
+
+# 합치면?
+$ ncal -B2 -A1
+```
+
+### 옵션을 여러 개 넣을 수 있다
+
+```bash
+$ ncal -B1 -A2 july 1969
+```
+
+## Command Structure Quiz
+
+질문 1:**가상의 `cheese` 커맨드는 `x` 옵션을 허용합니다. 다음 중 `x` 옵션으로 `cheese`를 실행하는 유효한 방법은 무엇일까요?**
+
+• `cheese x`
+• `-cheese x`
+**• `cheese -x`**
+• `-x cheese`
+
+질문 2:**가상의 `makebaby` 커맨드는 우리가 두 개의 이름을 두 개의 개별 인수로 전달할 것으로 예상합니다. 다음 중 `makebaby` 커맨드에 두 개의 인수를 제공하는 유효한 방법은 무엇일까요?**
+
+• `makebaby david,iman`
+• `makebaby -david -iman`
+**• `makebaby david iman`**
+
+질문 3:**ls 커맨드(아직 본 적이 없음)는 S 옵션과 r 옵션을 허용합니다. 커맨드를 실행하지 않고... 다음 중 두 옵션을 모두 사용하여 ls를 실행하는 유효한 방법이 아닌 것은 무엇일까요?**
+
+• `ls -Sr`
+• `ls -r -S`
+**• `ls -RS`**
