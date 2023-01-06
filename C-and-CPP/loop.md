@@ -430,3 +430,73 @@ int main()
     printf("Good!\n");
 }
 ```
+
+## 어떤 루프를 사용할까?
+
+### 진입 조건 (while, for) vs 탈출 조건 (do while)
+
+- do while이 덜 쓰이더라도 유연하게 사용하기 위해서 종종 활용해보자
+- 어떤 반복문을 사용하든 효율적이고 읽기 좋으면 된다
+
+### for vs while
+
+- 대부분 for를 더 많이 쓰게 되어 있긴 하다. 메모리 구조에 맞춰서 원하는 갯수가 정해진 상황에서는 for문이 더 좋다.
+- while문은 갯수가 정해져 있지 않은 상황에서 사용한다.
+
+## 중첩된 루프
+
+**Nested Loops**
+
+- 2중 반복문으로 출력문을 만들어보기
+
+```c
+#include <stdio.h>
+
+#define NUM_ROWS 5
+#define FIRST_CHAR 'A'
+#define LAST_CHAR 'K'
+
+int main()
+{
+    for (int r = 0; r < NUM_ROWS; r++)
+    {
+        for (int c = FIRST_CHAR; c <= LAST_CHAR; c++)
+        {
+            printf("%c ", c);
+        }
+        printf("\n");
+    }
+}
+>> A B C D E F G H I J K
+>> A B C D E F G H I J K
+>> A B C D E F G H I J K
+>> A B C D E F G H I J K
+>> A B C D E F G H I J K
+```
+
+- 계단식 출력
+
+```c
+#include <stdio.h>
+
+#define NUM_ROWS 5
+#define FIRST_CHAR 'A'
+#define LAST_CHAR 'K'
+
+int main()
+{
+    for (int r = 0; r < NUM_ROWS; r++)
+    {
+        for (int c = FIRST_CHAR; c <= FIRST_CHAR + r; c++)
+        {
+            printf("%c ", c);
+        }
+        printf("\n");
+    }
+}
+>> A
+>> A B
+>> A B C
+>> A B C D
+>> A B C D E
+```
