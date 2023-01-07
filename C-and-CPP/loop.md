@@ -500,3 +500,76 @@ int main()
 >> A B C D
 >> A B C D E
 ```
+
+## 배열과 런타임 에러
+
+![array](./loop/1.png){: width="300”}
+
+## 배열 Array
+
+- 데이터의 묶음
+
+```c
+#define NUM_DAYS 365
+
+int main()
+{
+    int daily_temperature[NUM_DAYS];
+    double stock_prices_history[NUM_DAYS];
+
+    printf("%zd\n", sizeof(stock_prices_history));
+    printf("%zd\n", sizeof(double) * NUM_DAYS);
+    printf("%zd\n", sizeof(stock_prices_history[0]));
+}
+
+>> 2920
+>> 2920
+>> 8
+```
+
+### 배열에 입력하기
+
+```c
+int main()
+{
+
+    int my_numbers[5];
+
+    my_numbers[0] = 1; // 첫 메모리 주소에서부터 0칸이 떨어진 곳
+    my_numbers[1] = 2;
+    my_numbers[2] = 4;
+    my_numbers[3] = 8;
+    my_numbers[4] = 16;
+    printf("%d\n", my_numbers[0]); // 1 출력
+    scanf("%d", &my_numbers[0]); // 3 입력
+    printf("%d\n", my_numbers[0]); // 3 출력
+    scanf("%d", my_numbers); // 5 입력
+    printf("%d\n", my_numbers[0]); // 5 출력
+}
+```
+
+- `scanf("%d", &my_numbers[0]);` : my_numbers라는 배열의 0번 인덱스에 있는 값의 **주소(&)**를 scanf에 사용한다!
+- `scanf("%d", my_numbers);` : `&` 기호 없이 바로 배열을 넣으면 첫 주소를 가리킨다.
+
+### 런타임 에러
+
+```c
+int main()
+{
+    int my_numbers[5];
+
+    my_numbers[0] = 1; // 첫 메모리 주소에서부터 0칸이 떨어진 곳
+    my_numbers[1] = 2;
+    my_numbers[2] = 4;
+    my_numbers[3] = 8;
+    my_numbers[4] = 16;
+
+    /* Runtime error */
+    my_numbers[5] = 123; // out of bound
+    printf("%d\n", my_numbers[5]); // out of bound
+
+    my_numbers = 7; // Compile error
+}
+```
+
+- 컴파일에러와 다르게 런타임에러의 경우 코드가 돌아가기는 하나 그 코드가 실행되는 시점에서 문제를 야기할 수 있다.
