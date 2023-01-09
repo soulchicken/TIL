@@ -573,3 +573,103 @@ int main()
 ```
 
 - 컴파일에러와 다르게 런타임에러의 경우 코드가 돌아가기는 하나 그 코드가 실행되는 시점에서 문제를 야기할 수 있다.
+
+## for 루프를 배열과 함께 사용하기
+
+- 배열이 없다면 데이터를 관리할 때 종종 불편하다.
+
+```c
+/* Motivation */
+int i1 = 0;
+int i2 = 1;
+int i3 = 2;
+// ...
+
+printf("%d\n", i1);
+printf("%d\n", i2);
+printf("%d\n", i3);
+// ...
+```
+
+- 5개의 요소를 관리한다면 크기가 5인 배열을 선언하자
+  - 인덱스를 통해 접근하기
+
+```c
+#include <stdio.h>
+
+#define SIZE 5
+
+int main()
+{
+
+    int my_arr[SIZE];
+
+    // prepare for array data
+    for (int i = 0; i < SIZE; i++)
+    {
+        my_arr[i] = i;
+    }
+
+    // print array data
+    for (int i = 0; i < SIZE; i++)
+    {
+        printf("%d ", my_arr[i]);
+    }
+}
+```
+
+## 루프 안에서 함수의 반환값 사용하기
+
+- n^m 을 구현한다면 이러하다.
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int base, exp;
+    while (scanf("%d %d", &base, &exp) == 2)
+    {
+        int result = 1;
+
+        for (int i = 0; i < exp; i++)
+        {
+            result *= base;
+        }
+        printf("%d\n", result);
+    }
+
+    return 0;
+}
+```
+
+- **함수**로 뽑아낸다면 더 간결하다.
+
+```c
+#include <stdio.h>
+
+int compute_pow(int base, int exp);
+
+int main()
+{
+    int base, exp;
+    int result;
+    while (scanf("%d %d", &base, &exp) == 2)
+    {
+        result = compute_pow(base, exp);
+        printf("%d\n", result);
+    }
+
+    return 0;
+}
+
+int compute_pow(int base, int exp)
+{
+    int result = 1;
+    for (int i = 0; i < exp; i++)
+    {
+        result *= base;
+    }
+    return result;
+}
+```
