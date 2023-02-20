@@ -23,6 +23,7 @@
   - [문제 해결 패턴](./JavaScript/solving-patterns-part2.md)
   - [Data Structures](./JavaScript/DataStructure/DataStructure-intro.md)
     - [단일 연결 리스트 (Singly Linked List)](./JavaScript/DataStructure/SinglyLinkedList.md)
+    - [양방향 연결 리스트 (Doubly Linked List)](./JavaScript/DataStructure/DoublyLinkedList.md)
 
 ## C / C++
 
